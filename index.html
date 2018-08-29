@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Risa</title>
+    <!--script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script-->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/risa.css">
+</head>
+<body>
+    <div id="risa">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="navbar-brand">Risa</div>
+            <div style="flex:1"></div>
+            <div style="margin-right: 5px;">
+                <a class="nv-btn" href="https://github.com/NessyBaka/skins" target="_blank" rel="noreferrer" >
+                    <img src="./assets/gt.png" style="height:24px"/>
+                </a>
+            </div>
+            <form class="form-inline">
+                <input
+                    class="form-control" type="search" placeholder="Search for skin/author"
+                    v-model="searching" v-on:input="search(searching)">
+            </form>
+        </nav>
+        <div id="skins-shower">
+            <div class="skin card" v-if="showing && showing.length>0" v-for="skin in showing">
+                <div class="card-img-top screenshots">
+                    <div class="screenshot" v-bind:style="{backgroundImage: 'url(./i/'+skin.id+'-0.jpg)'}"></div>
+                    <div class="screenshot" v-bind:style="{backgroundImage: 'url(./i/'+skin.id+'-1.jpg)'}"></div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{skin.name}}<span class="skin-author"></h5>
+                    <a :href="'./'+skin.id+'.osk'" class="btn btn-primary" v-if="skin.id" download>Download</a>
+                    <a :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker" v-if="skin.id"></a>
+                    <a :href="skin.link" class="btn btn-outline-secondary" v-if="skin.link">Original link</a>
+                    <a :href="skin.alink?skin.alink:''" class="btn btn-outline-info" v-if="skin.author">Author: {{skin.author}}</a>
+                </div>
+            </div>
+            <nav class="pages-line" v-if="found.length>6">
+                <ul class="pagination justify-content-center">
+                    <li v-bind:class="{'page-item':true, disabled: !(page>0)}">
+                        <a class="page-link" href="#" tabindex="-1" v-on:click="page--;show(page)">Previous</a>
+                    </li>
+                    <li v-bind:class="{'page-item':true, disabled: (page+1)*max > found.length}">
+                        <a class="page-link" href="#" v-on:click="page++;show(page)">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="bottom">
+        <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer" title="aneyo @ twitter">Twitter</a> - <a href="https://love-live.wikia.com/wiki/Rin_Hoshizora" target="_blank" rel="noopener" title="Hoshizora Rin wiki page @ Love Live! Wikia">Who is the <b>Imai Lisa?</b></a></span>
+    </div>
+    <script src="./assets/risa.js"></script>
+</body>
+</html>
