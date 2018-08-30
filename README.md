@@ -12,17 +12,18 @@ You may wanna know why risa? - well, it just a thing that I like to name my proj
 This project is replacement for [skins.nessy.pw](http://skins.nessy.pw) / [GitHub Page](https://github.com/NessyBaka/akogare)(Akogare skin project)  
 Soon `skins.` sub-domain will refer to this project
 
-## Things to do:
+## Things to do
 
 - [ ] Dark Theme (cause I know that you don't like light themes)
 - [ ] Multi-language support
 - [ ] Finish skin parser
 - [ ] Skin search filters
 - [ ] Placeholder server
+- [ ] Use separate CDN for skins
 
 more to come, I think...
 
-## Things that was used in this project:
+## Things that was used in this project
 
 - [Vue.js](http://vuejs.org/) - all the dynamic stuff
 - [Bootstrap](https://getbootstrap.com/) - styles (although, I still used some of my stylesheets)
