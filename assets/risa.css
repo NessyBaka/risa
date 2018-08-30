@@ -45,9 +45,10 @@ body{
     flex:10;
 }
 
-.skin-author span{
-    opacity: 0.5
+.skin-btn{
+    margin-top: 5px;
 }
+
 .pages-line{
     width: 100vw;
 }
