@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#343a40">
     <title>Risa</title>
     <!--script src="./assets/vue/dev.js"></script-->
     <script src="./assets/vue/min.js"></script>
@@ -24,12 +25,10 @@
                     <img src="./assets/gt.png" style="height:24px"/>
                 </a>
             </div>
-            <form class="form-inline">
-                <input
-                    class="form-control" type="search"
+            <input
+                    class="form-control form-search" type="search"
                     placeholder="Search for skin/author"
                     v-model="search_query">
-            </form>
         </nav>
         <div id="skins-shower">
             <div class="nothing-found" v-if="meta && !showing.length>0">
