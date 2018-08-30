@@ -1,14 +1,34 @@
 let d = {
-    searching:'',
     found:[],
     showing:[],
-    page:0,
-    max:6,
     meta:undefined,
+
+    //Params
+    max:6,//Max items per page
+
+    //Get/Set variables
+    _search_query:'',
+    _page_now:0,
+
+    //Getters
+    get search_query(){return this._search_query},
+    get page(){return this._page_now},
+    //Setters
+    set search_query(query){
+        this._search_query = query||'';
+        this.search(this._search_query);
+    },
+    set page(page_query){
+        this._page_now = page_query >= 0 ? page_query : 0;
+        this.show(this._page_now);
+    },
+
+    //Functions
     start:()=>{
         fetch('./meta.json').then(r=>{
             r.json().then(j=>{
                 d.meta=j;
+                d.meta.skins = d.meta.skins.reverse()
                 d.search();
             })
         }).catch(e=>{console.log(e)})
@@ -47,8 +67,11 @@ let d = {
 
             d.showing.push(d.found[i])
         }
+    },
+    checkCookies(){
+        //TODO:check cookies
     }
 },
-    risa=new Vue({el:"#risa",data:d})
+    risa=new Vue({el:"#risa",data:d});
 
 d.start()

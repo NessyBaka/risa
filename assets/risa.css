@@ -28,6 +28,20 @@ body{
     width: 480px;
     display: block;
 }
+
+.card-tags{
+    padding: 2.5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
+.card-tags .badge{
+    margin: 2.5px;
+}
+
 .screenshots{
     display: flex;
     flex-direction: row;
@@ -45,8 +59,14 @@ body{
     flex:10;
 }
 
+.skin-name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .skin-btn{
     margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 .pages-line{

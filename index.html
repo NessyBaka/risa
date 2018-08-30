@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Risa</title>
-    <!--script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script-->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!--script src="./assets/vue/dev.js"></script-->
+    <script src="./assets/vue/min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/risa.css">
 </head>
@@ -26,8 +26,9 @@
             </div>
             <form class="form-inline">
                 <input
-                    class="form-control" type="search" placeholder="Search for skin/author"
-                    v-model="searching" v-on:input="search(searching)">
+                    class="form-control" type="search"
+                    placeholder="Search for skin/author"
+                    v-model="search_query">
             </form>
         </nav>
         <div id="skins-shower">
@@ -36,11 +37,14 @@
                 <span v-if="meta.skins.length > 0">
                     <h6>To show all skins again just clear the search bar</h6>
                     <a
-                        v-on:click="searching='';search(searching)"
+                        v-on:click="search_query=''"
                         href="#" class="btn btn-primary">Clear search bar</a>
                 </span>
             </div>
             <div class="skin card" v-if="showing && showing.length>0" v-for="skin in showing">
+                <div class="card-tags">
+                    <span v-for="note in skin.notes" v-bind:class="{'badge':true, 'badge-warning':note.t=='warn', 'badge-info':note.t=='info'}">{{note.c}}</span>
+                </div>
                 <div class="card-img-top screenshots">
                     <a
                         class="screenshot"
@@ -54,7 +58,7 @@
                         v-bind:style="{backgroundImage: 'url('+((skin.img||{}).p||'./i/p.jpg')+')'}"></a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
+                    <h5 class="card-title skin-name" :title="skin.name||'Fancy Skin #'+skin.id">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
                     <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" download>Download</a>
                     <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker skin-btn" v-if="skin.id"></a>
                     <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
@@ -64,10 +68,10 @@
             <nav class="pages-line" v-if="found.length>6">
                 <ul class="pagination justify-content-center">
                     <li v-bind:class="{'page-item':true, disabled: !(page>0)}">
-                        <a class="page-link" href="#" tabindex="-1" v-on:click="page--;show(page)">Previous</a>
+                        <a class="page-link" href="#" v-on:click="page--">Previous</a>
                     </li>
                     <li v-bind:class="{'page-item':true, disabled: (page+1)*max > found.length}">
-                        <a class="page-link" href="#" v-on:click="page++;show(page)">Next</a>
+                        <a class="page-link" href="#" v-on:click="page++">Next</a>
                     </li>
                 </ul>
             </nav>
