@@ -1,3 +1,58 @@
 {
-    "skins":[]
+    "skins": [
+        {
+            "name": "Ganbaruby - Kurosawa Ruby",
+            "link": "https://osu.ppy.sh/community/forums/topics/523080",
+            "author": "-Derek",
+            "alink": "https://osu.ppy.sh/users/2636217",
+            "id": "v7VNp",
+            "img": {
+                "s": "https://i.imgur.com/Acclaot.png",
+                "p": "https://i.imgur.com/TwqJcnq.png"
+            }
+        },
+        {
+            "name": "Honkers - Kousaka Honoka",
+            "link": "https://osu.ppy.sh/community/forums/topics/518713",
+            "author": "-Derek",
+            "alink": "https://osu.ppy.sh/users/2636217",
+            "id": "OVblA",
+            "img": {
+                "s": "https://i.imgur.com/hlQuAbz.png",
+                "p": "https://i.imgur.com/yA9Yct6.png"
+            }
+        },
+        {
+            "name": "Yohane - The Fallen Angel",
+            "link": "https://osu.ppy.sh/community/forums/topics/523080",
+            "author": "-Derek",
+            "alink": "https://osu.ppy.sh/users/2636217",
+            "id": "MKFYQ",
+            "img": {
+                "s": "https://i.imgur.com/3yMFEZP.png",
+                "p": "https://i.imgur.com/7ZP5XNX.png"
+            }
+        },
+        {
+            "name": "o7 - Yousoro",
+            "link": "https://osu.ppy.sh/community/forums/topics/541376",
+            "author": "-Derek",
+            "alink": "https://osu.ppy.sh/users/2636217",
+            "id": "yLaCh",
+            "img": {
+                "s": "https://i.imgur.com/eAhTMEh.png",
+                "p": "https://i.imgur.com/XoMJ9EU.png"
+            }
+        },
+        {
+            "id": "U3ldy",
+            "name": "Windswept",
+            "link": "https://www.reddit.com/r/OsuSkins/comments/7giajj/windswept_mix_skin_stdmania/",
+            "author": "Puzzle",
+            "img": {
+                "s":"https://i.imgur.com/O5sjtoF.jpg",
+                "p":"https://i.imgur.com/tCaWhoK.jpg"
+            }
+        }
+    ]
 }

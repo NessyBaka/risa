@@ -80,3 +80,20 @@ body{
     width: 38px;
     height: 38px;
 }
+.nothing-found{
+    margin: 15px;
+}
+noscript{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    text-align: center;
+}
+noscript h2{
+    margin-top: calc(50vh - 2rem);
+}

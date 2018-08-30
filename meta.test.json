@@ -5,7 +5,11 @@
             "name":"Fancy skin 1",
             "author":"@aneyo",
             "alink":"http://twitter.com/aneyoof",
-            "link":"#"
+            "link":"#",
+            "img": {
+                "s":"risa-0.jpg",
+                "p":"risa-1.jpg"
+            }
         },
         {
             "id":"risa",

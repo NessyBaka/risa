@@ -1,4 +1,12 @@
+# Languages - TODO thing
 /languages
+# Images with lisa <3
 /i/risa-*
+# Backups lol
 /backups
+# MacOS thingy
 .DS_Store
+# node - TODO: make parser available open wide (it's not ready yet)
+/node
+# VSCode settings
+/.vscode

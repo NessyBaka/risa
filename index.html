@@ -11,12 +11,16 @@
     <link rel="stylesheet" href="./assets/risa.css">
 </head>
 <body>
+    <noscript>
+        <h2>Risa needs some JavaScript</h2>
+        <h6>If you want to use this site, please, turn on the JavaScript</h6>
+    </noscript>
     <div id="risa">
         <nav class="navbar navbar-dark bg-dark">
             <div class="navbar-brand">Risa</div>
             <div style="flex:1"></div>
             <div style="margin-right: 5px;">
-                <a class="nv-btn" href="https://github.com/NessyBaka/skins" target="_blank" rel="noreferrer" >
+                <a class="nv-btn" href="https://github.com/NessyBaka/skins" target="_blank" rel="noreferrer" title="Risa GitHub Project page">
                     <img src="./assets/gt.png" style="height:24px"/>
                 </a>
             </div>
@@ -27,17 +31,34 @@
             </form>
         </nav>
         <div id="skins-shower">
+            <div class="nothing-found" v-if="meta && !showing.length>0">
+                <h1>Nothing found</h1>
+                <span v-if="meta.skins.length > 0">
+                    <h6>To show all skins again just clear the search bar</h6>
+                    <a
+                        v-on:click="searching='';search(searching)"
+                        href="#" class="btn btn-primary">Clear search bar</a>
+                </span>
+            </div>
             <div class="skin card" v-if="showing && showing.length>0" v-for="skin in showing">
                 <div class="card-img-top screenshots">
-                    <div class="screenshot" v-bind:style="{backgroundImage: 'url(./i/'+skin.id+'-0.jpg)'}"></div>
-                    <div class="screenshot" v-bind:style="{backgroundImage: 'url(./i/'+skin.id+'-1.jpg)'}"></div>
+                    <a
+                        class="screenshot"
+                        :href="(skin.img||{}).s||'./i/s.jpg'" target="_blank"
+                        title="(Selection screen) Click on image to open it in full size."
+                        v-bind:style="{backgroundImage: 'url('+((skin.img||{}).s||'./i/s.jpg')+')'}"></a>
+                    <a
+                        class="screenshot"
+                        :href="(skin.img||{}).p||'./i/p.jpg'" target="_blank"
+                        title="(Play field) Click on image to open it in full size."
+                        v-bind:style="{backgroundImage: 'url('+((skin.img||{}).p||'./i/p.jpg')+')'}"></a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{skin.name}}<span class="skin-author"></h5>
+                    <h5 class="card-title">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
                     <a :href="'./'+skin.id+'.osk'" class="btn btn-primary" v-if="skin.id" download>Download</a>
-                    <a :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker" v-if="skin.id"></a>
-                    <a :href="skin.link" class="btn btn-outline-secondary" v-if="skin.link">Original link</a>
-                    <a :href="skin.alink?skin.alink:''" class="btn btn-outline-info" v-if="skin.author">Author: {{skin.author}}</a>
+                    <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker" v-if="skin.id"></a>
+                    <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary" v-if="skin.link">Original link</a>
+                    <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:''" class="btn btn-outline-info" v-if="skin.author">Author: {{skin.author}}</a>
                 </div>
             </div>
             <nav class="pages-line" v-if="found.length>6">
@@ -53,7 +74,7 @@
         </div>
     </div>
     <div class="bottom">
-        <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer" title="aneyo @ twitter">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener" title="Hoshizora Rin wiki page @ Love Live! Wikia">Who is the <b>Imai Lisa?</b></a></span>
+        <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener">Who is the <b>Imai Lisa?</b></a></span>
     </div>
     <script src="./assets/risa.js"></script>
 </body>
