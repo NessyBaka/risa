@@ -14,8 +14,10 @@ Soon `skins.` sub-domain will refer to this project
 
 ## Things to do:
 
+- [ ] Dark Theme (cause I know that you don't like light themes)
 - [ ] Multi-language support
 - [ ] Finish skin parser
+- [ ] Skin search filters
 - [ ] Placeholder server
 
 more to come, I think...
