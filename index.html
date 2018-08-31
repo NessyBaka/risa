@@ -30,54 +30,56 @@
                     placeholder="Search for skin/author"
                     v-model="search_query">
         </nav>
-        <div id="skins-shower">
-            <div class="nothing-found" v-if="meta && !showing.length>0">
-                <h1>Nothing found</h1>
-                <span v-if="meta.skins.length > 0">
-                    <h6>To show all skins again just clear the search bar</h6>
-                    <a
-                        v-on:click="search_query=''"
-                        href="#" class="btn btn-primary">Clear search bar</a>
-                </span>
+        <div class="scroll-area">
+            <div id="skins-shower">
+                <div class="nothing-found" v-if="meta && !showing.length>0">
+                    <h1>Nothing found</h1>
+                    <span v-if="meta.skins.length > 0">
+                        <h6>To show all skins again just clear the search bar</h6>
+                        <a
+                            v-on:click="search_query=''"
+                            href="#" class="btn btn-primary">Clear search bar</a>
+                    </span>
+                </div>
+                <div class="skin card" v-if="showing && showing.length>0" v-for="skin in showing">
+                    <div class="card-tags">
+                        <span v-for="note in skin.notes" v-bind:class="{'badge':true, 'badge-warning':note.t=='warn', 'badge-info':note.t=='info'}">{{note.c}}</span>
+                    </div>
+                    <div class="card-img-top screenshots">
+                        <a
+                            class="screenshot"
+                            :href="(skin.img||{}).s||'./i/s.jpg'" target="_blank"
+                            title="(Selection screen) Click on image to open it in full size."
+                            v-bind:style="{backgroundImage: 'url('+((skin.img||{}).s||'./i/s.jpg')+')'}"></a>
+                        <a
+                            class="screenshot"
+                            :href="(skin.img||{}).p||'./i/p.jpg'" target="_blank"
+                            title="(Play field) Click on image to open it in full size."
+                            v-bind:style="{backgroundImage: 'url('+((skin.img||{}).p||'./i/p.jpg')+')'}"></a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title skin-name" :title="skin.name||'Fancy Skin #'+skin.id">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
+                        <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" download>Download</a>
+                        <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker skin-btn" v-if="skin.id"></a>
+                        <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
+                        <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:''" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
+                    </div>
+                </div>
+                <nav class="pages-line" v-if="found.length>6">
+                    <ul class="pagination justify-content-center">
+                        <li v-bind:class="{'page-item':true, disabled: !(page>0)}">
+                            <a class="page-link" href="#" v-on:click="page--">Previous</a>
+                        </li>
+                        <li v-bind:class="{'page-item':true, disabled: (page+1)*max > found.length}">
+                            <a class="page-link" href="#" v-on:click="page++">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <div class="skin card" v-if="showing && showing.length>0" v-for="skin in showing">
-                <div class="card-tags">
-                    <span v-for="note in skin.notes" v-bind:class="{'badge':true, 'badge-warning':note.t=='warn', 'badge-info':note.t=='info'}">{{note.c}}</span>
-                </div>
-                <div class="card-img-top screenshots">
-                    <a
-                        class="screenshot"
-                        :href="(skin.img||{}).s||'./i/s.jpg'" target="_blank"
-                        title="(Selection screen) Click on image to open it in full size."
-                        v-bind:style="{backgroundImage: 'url('+((skin.img||{}).s||'./i/s.jpg')+')'}"></a>
-                    <a
-                        class="screenshot"
-                        :href="(skin.img||{}).p||'./i/p.jpg'" target="_blank"
-                        title="(Play field) Click on image to open it in full size."
-                        v-bind:style="{backgroundImage: 'url('+((skin.img||{}).p||'./i/p.jpg')+')'}"></a>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title skin-name" :title="skin.name||'Fancy Skin #'+skin.id">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
-                    <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" download>Download</a>
-                    <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker skin-btn" v-if="skin.id"></a>
-                    <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
-                    <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:''" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
-                </div>
+            <div class="bottom">
+                <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener">Who is the <b>Imai Lisa?</b></a></span>
             </div>
-            <nav class="pages-line" v-if="found.length>6">
-                <ul class="pagination justify-content-center">
-                    <li v-bind:class="{'page-item':true, disabled: !(page>0)}">
-                        <a class="page-link" href="#" v-on:click="page--">Previous</a>
-                    </li>
-                    <li v-bind:class="{'page-item':true, disabled: (page+1)*max > found.length}">
-                        <a class="page-link" href="#" v-on:click="page++">Next</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
-    </div>
-    <div class="bottom">
-        <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener">Who is the <b>Imai Lisa?</b></a></span>
     </div>
     <script src="./assets/risa.js"></script>
 </body>
