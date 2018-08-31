@@ -25,7 +25,8 @@ let d = {
 
     //Functions
     start:()=>{
-        fetch('./meta.json').then(r=>{
+        //meta.json?t=<timestamp> - CACHING H A C K S
+        fetch('./meta.json?t='+Date.now()).then(r=>{
             r.json().then(j=>{
                 d.meta=j;
                 d.meta.skins = d.meta.skins.reverse()
