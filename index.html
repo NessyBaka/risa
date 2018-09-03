@@ -59,7 +59,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title skin-name" :title="skin.name||'Fancy Skin #'+skin.id">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
-                        <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" download>Download</a>
+                        <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
                         <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker skin-btn" v-if="skin.id"></a>
                         <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
                         <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:''" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
