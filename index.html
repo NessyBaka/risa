@@ -5,31 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#343a40">
+    <link rel="manifest" href="/manifest.json">
     <title>Risa</title>
     <!--script src="./assets/vue/dev.js"></script-->
     <script src="./assets/vue/min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/risa.css">
+    <link rel="stylesheet" href="./assets/css/risa.css">
 </head>
 <body>
     <noscript>
         <h2>Risa needs some JavaScript</h2>
         <h6>If you want to use this site, please, turn on the JavaScript</h6>
     </noscript>
-    <div id="risa">
+    <div
+        id="risa"
+        style="visibility: hidden;" :style="{visibility: 'visible'}">
+        <!--
+            visibility bind thing is a ""cool hax"" that I've ""invented"" myself while eating waffles with tea.
+            (It's still a thing cause I wan't to hide stuff from non-js users, tho it's very useless so I've made noscript's background transparent)
+        -->
         <nav class="navbar navbar-dark bg-dark">
-            <div class="navbar-brand">Risa</div>
-            <div style="flex:1"></div>
-            <div style="margin-right: 5px;">
-                <a class="nv-btn" href="https://github.com/NessyBaka/skins" target="_blank" rel="noreferrer" title="Risa GitHub Project page">
-                    <img src="./assets/gt.png" style="height:24px"/>
-                </a>
-            </div>
+            <a class="navbar-brand" href="https://a.nessy.pw/">Risa</a>
+            <nav class="nav risa-nav">
+                <a class="btn btn-outline-info" href="https://github.com/NessyBaka/risa" target="_blank" rel="noreferrer" title="Risa GitHub Project page">GitHub</a>
+            </nav>
             <input
-                    class="form-control form-search" type="search"
+                    class="form-control form-search"
                     placeholder="Search for skin/author"
+                    autocomplete="no" type="search"
                     v-model="search_query">
         </nav>
+        <div class="close-view video-preview" v-if="video">
+            <skin-video :video="video"></skin-video>
+            <a href="#" id="close-video-button" class="btn btn-danger"
+                @click="video=null">Close Video Preview</a>
+        </div>
+        <div class="close-view skin-view" v-if="vskin">
+            <div class="view-scroller">
+                <a href="#" class="view-close-btn" @click="closeSkinCard()"></a>
+                <div class="card" style="user-select:text;">
+                    <skin-tags :skin="vskin"></skin-tags>
+                    <screenshots :skin="vskin" @video-click="video=$event"></screenshots>
+                    <div class="card-body">
+                        <skin-title :skin="vskin"></skin-title>
+                        <h6 v-if="vskin.author">By <a :href="vskin.alink||'#'">{{vskin.author}}</a></h6>
+                        <div class="btn-group" style="width:100%">
+                            <a :href="'./'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
+                            <a target="_blank" :href="'http://a.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
+                        </div>
+                        <skin-video v-if="vskin.v" :video="vskin.v" class="card-video"></skin-video>
+                        <div class="btn-group" style="width:100%">
+                            <a target="_blank" rel="noreferrer" :href="vskin.link" class="btn btn-outline-secondary skin-btn" v-if="vskin.link" style="flex:1">Original link</a>
+                            <a target="_blank" rel="noreferrer" :href="vskin.alink||'#'" class="btn btn-outline-info skin-btn" v-if="vskin.author" style="flex:1">Author: {{vskin.author}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="scroll-area">
             <div id="skins-shower">
                 <div class="nothing-found" v-if="meta && !showing.length>0">
@@ -37,41 +69,31 @@
                     <span v-if="meta.skins.length > 0">
                         <h6>To show all skins again just clear the search bar</h6>
                         <a
-                            v-on:click="search_query=''"
+                            @click="search_query=''"
                             href="#" class="btn btn-primary">Clear search bar</a>
                     </span>
                 </div>
-                <div class="skin card" v-if="showing && showing.length>0" v-for="skin in showing">
-                    <div class="card-tags">
-                        <span v-for="note in skin.notes" v-bind:class="{'badge':true, 'badge-warning':note.t=='warn', 'badge-info':note.t=='info'}">{{note.c}}</span>
-                    </div>
-                    <div class="card-img-top screenshots">
-                        <a
-                            class="screenshot"
-                            :href="(skin.img||{}).s||'./i/s.jpg'" target="_blank"
-                            title="(Selection screen) Click on image to open it in full size."
-                            v-bind:style="{backgroundImage: 'url('+((skin.img||{}).s||'./i/s.jpg')+')'}"></a>
-                        <a
-                            class="screenshot"
-                            :href="(skin.img||{}).p||'./i/p.jpg'" target="_blank"
-                            title="(Play field) Click on image to open it in full size."
-                            v-bind:style="{backgroundImage: 'url('+((skin.img||{}).p||'./i/p.jpg')+')'}"></a>
-                    </div>
+                <div class="skin card" v-for="skin in showing">
+                    <skin-tags :skin="skin"></skin-tags>
+                    <screenshots :skin="skin" @video-click="video=$event"></screenshots>
                     <div class="card-body">
-                        <h5 class="card-title skin-name" :title="skin.name||'Fancy Skin #'+skin.id">{{skin.name||"Fancy Skin #"+skin.id}}</h5>
-                        <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
-                        <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark linker skin-btn" v-if="skin.id"></a>
+                        <skin-title :skin="skin" @title-click="vskin=$event"></skin-title>
+                        <div class="btn-group">
+                            <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
+                            <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
+                        </div>
                         <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
-                        <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:''" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
+                        <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:'#'" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
+                        <button title="Show video preview from YouTube" class="btn btn-outline-danger sq-btn yt-btn skin-btn" v-if="skin.v" @click="video=skin.v"></button>
                     </div>
                 </div>
                 <nav class="pages-line" v-if="found.length>6">
                     <ul class="pagination justify-content-center">
-                        <li v-bind:class="{'page-item':true, disabled: !(page>0)}">
-                            <a class="page-link" href="#" v-on:click="page--">Previous</a>
+                        <li :class="{'page-item':true, disabled: !(page>0)}">
+                            <a class="page-link" href="#" @click="page--">Previous</a>
                         </li>
-                        <li v-bind:class="{'page-item':true, disabled: (page+1)*max > found.length}">
-                            <a class="page-link" href="#" v-on:click="page++">Next</a>
+                        <li :class="{'page-item':true, disabled: (page+1)*max > found.length}">
+                            <a class="page-link" href="#" @click="page++">Next</a>
                         </li>
                     </ul>
                 </nav>
@@ -81,6 +103,7 @@
             </div>
         </div>
     </div>
-    <script src="./assets/risa.js"></script>
+    <script src="./assets/js/vue.components.min.js"></script>
+    <script src="./assets/js/risa.min.js"></script>
 </body>
 </html>
