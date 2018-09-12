@@ -2,15 +2,12 @@
 
 Risa - is a small project writen by aneyo.
 
-## [risa.nessy.pw](https://risa.nessy.pw) or [a.nessy.pw](https://a.nessy.pw)
+## [risa.nessy.pw](https://risa.nessy.pw) | [skins.nessy.pw](https://a.nessy.pw) | [a.nessy.pw](a.nessy.pw)
 
 You may wanna know why risa? - well, it just a thing that I like to name my projects with my loved characters/VA names, so in 25th of august (4 days before this project was created) was [Imai Lisa](http://bandori.wikia.com/wiki/Imai_Lisa) birthday, so yeah `Lisa => Risa`.
 > There's no meaning in this project name whatsoever
 
 ****
-
-This project is replacement for [skins.nessy.pw](http://skins.nessy.pw) / [GitHub Page](https://github.com/NessyBaka/akogare)(Akogare skin project)  
-Soon `skins.` sub-domain will refer to this project
 
 ## Things to do
 
@@ -18,7 +15,7 @@ Soon `skins.` sub-domain will refer to this project
 - [ ] Multi-language support
 - [ ] Finish skin parser
 - [ ] Skin search filters
-- [ ] Placeholder server
+- [x] Placeholder server (useless now)
 - [ ] Use separate CDN for skins
 
 more to come, I think...
