@@ -25,7 +25,7 @@
             (It's still a thing cause I wan't to hide stuff from non-js users, tho it's very useless so I've made noscript's background transparent)
         -->
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="https://a.nessy.pw/">Risa</a>
+            <a class="navbar-brand" href="https://skins.nessy.pw/">Risa</a>
             <nav class="nav risa-nav">
                 <a class="btn btn-outline-info" href="https://github.com/NessyBaka/risa" target="_blank" rel="noreferrer" title="Risa GitHub Project page">GitHub</a>
             </nav>
@@ -51,7 +51,7 @@
                         <h6 v-if="vskin.author">By <a :href="vskin.alink||'#'">{{vskin.author}}</a></h6>
                         <div class="btn-group" style="width:100%">
                             <a :href="'./'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
-                            <a target="_blank" :href="'http://a.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
+                            <a target="_blank" :href="'http://skins.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
                         </div>
                         <skin-video v-if="vskin.v" :video="vskin.v" class="card-video"></skin-video>
                         <div class="btn-group" style="width:100%">
@@ -80,7 +80,7 @@
                         <skin-title :skin="skin" @title-click="vskin=$event"></skin-title>
                         <div class="btn-group">
                             <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
-                            <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
+                            <a target="_blank" :href="'http://skins.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
                         </div>
                         <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
                         <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:'#'" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
