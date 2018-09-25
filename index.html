@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
     <meta name="Description" content="It's not the skins db, it's just a small osu! skin collection that we love to use.">
+=======
+    <meta name="google-site-verification" content="68AmyFzDPO1l7R9DW8m6eh-xZf0OJ-QiiJUDqaBpYMs" />
+>>>>>>> b73ba3d64131da8aff65c5f92bb434c9a5fcba13
     <meta name="theme-color" content="#343a40">
     <link rel="manifest" href="/manifest.json">
     <title>Risa</title>
     <!--script src="./assets/vue/dev.js"></script-->
     <script src="./assets/vue/min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/risa.css">
+    <link rel="stylesheet" href="./assets/css/risa.min.css">
 </head>
 <body>
     <noscript>
@@ -26,9 +30,9 @@
             (It's still a thing cause I wan't to hide stuff from non-js users, tho it's very useless so I've made noscript's background transparent)
         -->
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="https://a.nessy.pw/">Risa</a>
+            <a class="navbar-brand" href="https://skins.nessy.pw/">Risa</a>
             <nav class="nav risa-nav">
-                <a class="btn btn-outline-info" href="https://github.com/NessyBaka/risa" target="_blank" rel="noreferrer" title="Risa GitHub Project page">GitHub</a>
+                <a class="btn btn-outline-info" href="https://github.com/aneyo/risa" target="_blank" rel="noreferrer" title="Risa GitHub Project page">GitHub</a>
             </nav>
             <input
                     class="form-control form-search"
@@ -52,7 +56,7 @@
                         <h6 v-if="vskin.author">By <a :href="vskin.alink||'#'">{{vskin.author}}</a></h6>
                         <div class="btn-group" style="width:100%">
                             <a :href="'./'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
-                            <a target="_blank" :href="'http://a.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
+                            <a target="_blank" :href="'http://skins.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
                         </div>
                         <skin-video v-if="vskin.v" :video="vskin.v" class="card-video"></skin-video>
                         <div class="btn-group" style="width:100%">
@@ -81,7 +85,7 @@
                         <skin-title :skin="skin" @title-click="vskin=$event"></skin-title>
                         <div class="btn-group">
                             <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
-                            <a target="_blank" :href="'http://a.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
+                            <a target="_blank" :href="'http://skins.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
                         </div>
                         <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
                         <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:'#'" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
