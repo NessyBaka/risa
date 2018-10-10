@@ -31,7 +31,7 @@ nav.navbar{
 .risa-nav{
     flex:4;
     justify-content: flex-end;
-    margin: 0 5px;
+    /*margin: 0 5px;*/
 }
 
 .form-search{
@@ -262,4 +262,14 @@ nav.navbar{
     background-position: center;
     background-size: auto 100%;
     background-repeat: no-repeat;
+}
+/* lol? */
+.navbar{
+    padding: .5rem 0 !important;
+}
+.navbar-brand{
+    margin: 0 1rem !important;
+}
+.form-search{
+    margin: 0 1rem !important;
 }

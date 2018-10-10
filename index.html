@@ -9,8 +9,8 @@
     <meta name="theme-color" content="#343a40">
     <link rel="manifest" href="/manifest.json">
     <title>Risa</title>
-    <!--script src="./assets/vue/dev.js"></script-->
-    <script src="./assets/vue/min.js"></script>
+    <script src="./assets/vue/dev.js"></script>
+    <!--script src="./assets/vue/min.js"></script-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/risa.min.css">
 </head>
@@ -29,7 +29,6 @@
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="https://skins.nessy.pw/">Risa</a>
             <nav class="nav risa-nav">
-                <a class="btn btn-outline-info" href="https://github.com/aneyo/risa" target="_blank" rel="noreferrer" title="Risa GitHub Project page">GitHub</a>
             </nav>
             <input
                     class="form-control form-search"
@@ -85,8 +84,8 @@
                     <div class="card-body">
                         <skin-title :skin="skin" @title-click="vskin=$event"></skin-title>
                         <div class="btn-group">
-                            <a :href="'./'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
-                            <a target="_blank" :href="'http://skins.nessy.pw/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
+                            <a :href="'./s/'+skin.id+'.osk'" class="btn btn-primary skin-btn" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'">Download</a>
+                            <a target="_blank" :href="'http://skins.nessy.pw/s/'+skin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="skin.id"></a>
                         </div>
                         <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary skin-btn" v-if="skin.link">Original link</a>
                         <a target="_blank" rel="noreferrer" :href="skin.alink?skin.alink:'#'" class="btn btn-outline-info skin-btn" v-if="skin.author">Author: {{skin.author}}</a>
@@ -105,7 +104,7 @@
                 </nav>
             </div>
             <div class="bottom">
-                <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener">Who is the <b>Imai Lisa?</b></a></span>
+                <span class="div-like-lol">Created with <i id="h" alt="❤"></i> by <b>aneyo</b> - <a href="https://github.com/aneyo/risa" target="_blank" rel="noreferrer">GitHub Page</a> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener">Who is the <b>Imai Lisa?</b></a></span>
             </div>
         </div>
     </div>
