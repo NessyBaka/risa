@@ -37,28 +37,32 @@
                     autocomplete="no" type="search"
                     v-model="search_query">
         </nav>
-        <div class="close-view video-preview" v-if="video">
-            <skin-video :video="video"></skin-video>
-            <a href="#" id="close-video-button" class="btn btn-danger"
-                @click="video=null">Close Video Preview</a>
+        <div class="close-view" v-if="video">
+            <div class="close-background" @click="video=null"></div>
+            <div class="close-content video-preview">
+                <skin-video :video="video"></skin-video>
+            </div>
         </div>
-        <div class="close-view skin-view" v-if="vskin">
-            <div class="view-scroller">
-                <a href="#" class="view-close-btn" @click="closeSkinCard()"></a>
-                <div class="card" style="user-select:text;">
-                    <skin-tags :skin="vskin"></skin-tags>
-                    <screenshots :skin="vskin" @video-click="video=$event"></screenshots>
-                    <div class="card-body">
-                        <skin-title :skin="vskin"></skin-title>
-                        <h6 v-if="vskin.author">By <a :href="vskin.alink||'#'">{{vskin.author}}</a></h6>
-                        <div class="btn-group" style="width:100%">
-                            <a :href="'./'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
-                            <a target="_blank" :href="'http://skins.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
-                        </div>
-                        <skin-video v-if="vskin.v" :video="vskin.v" class="card-video"></skin-video>
-                        <div class="btn-group" style="width:100%">
-                            <a target="_blank" rel="noreferrer" :href="vskin.link" class="btn btn-outline-secondary skin-btn" v-if="vskin.link" style="flex:1">Original link</a>
-                            <a target="_blank" rel="noreferrer" :href="vskin.alink||'#'" class="btn btn-outline-info skin-btn" v-if="vskin.author" style="flex:1">Author: {{vskin.author}}</a>
+        <div class="close-view" v-if="vskin">
+            <div class="close-background" @click="vskin=null"></div>
+            <div class="close-content skin-view">
+                <div class="view-scroller">
+                    <a href="#" class="view-close-btn" @click="closeSkinCard()"></a>
+                    <div class="card" style="user-select:text;">
+                        <skin-tags :skin="vskin"></skin-tags>
+                        <screenshots :skin="vskin" @video-click="video=$event"></screenshots>
+                        <div class="card-body">
+                            <skin-title :skin="vskin"></skin-title>
+                            <h6 v-if="vskin.author">By <a :href="vskin.alink||'#'">{{vskin.author}}</a></h6>
+                            <div class="btn-group" style="width:100%">
+                                <a :href="'./'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
+                                <a target="_blank" :href="'http://skins.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
+                            </div>
+                            <skin-video v-if="vskin.v" :video="vskin.v" class="card-video"></skin-video>
+                            <div class="btn-group" style="width:100%">
+                                <a target="_blank" rel="noreferrer" :href="vskin.link" class="btn btn-outline-secondary skin-btn" v-if="vskin.link" style="flex:1">Original link</a>
+                                <a target="_blank" rel="noreferrer" :href="vskin.alink||'#'" class="btn btn-outline-info skin-btn" v-if="vskin.author" style="flex:1">Author: {{vskin.author}}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +98,7 @@
                         <li :class="{'page-item':true, disabled: !(page>0)}">
                             <a class="page-link" href="#" @click="page--">Previous</a>
                         </li>
-                        <li :class="{'page-item':true, disabled: (page+1)*max > found.length}">
+                        <li :class="{'page-item':true, disabled: (page+1)*max >= found.length}">
                             <a class="page-link" href="#" @click="page++">Next</a>
                         </li>
                     </ul>
