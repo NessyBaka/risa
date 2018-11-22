@@ -9,8 +9,8 @@
     <meta name="theme-color" content="#343a40">
     <link rel="manifest" href="/manifest.json">
     <title>Risa</title>
-    <script src="./assets/vue/dev.js"></script>
-    <!--script src="./assets/vue/min.js"></script-->
+    <!--script src="./assets/vue/dev.js"></script-->
+    <script src="./assets/vue/min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/risa.min.css">
 </head>
@@ -54,8 +54,8 @@
                             <skin-title :skin="vskin"></skin-title>
                             <h6 v-if="vskin.author">By <a :href="vskin.alink||'#'">{{vskin.author}}</a></h6>
                             <div class="btn-group" style="width:100%">
-                                <a :href="'./'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
-                                <a target="_blank" :href="'http://skins.nessy.pw/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
+                                <a :href="'./s/'+vskin.id+'.osk'" class="btn btn-primary skin-btn" v-if="vskin.id" :download="(vskin.name||'fancy-skin')+'.osk'" style="flex:1">Download</a>
+                                <a target="_blank" :href="'http://skins.nessy.pw/s/'+vskin.id+'.osk'" class="btn btn-dark sq-btn linker-btn skin-btn" v-if="vskin.id"></a>
                             </div>
                             <skin-video v-if="vskin.v" :video="vskin.v" class="card-video"></skin-video>
                             <div class="btn-group" style="width:100%">
