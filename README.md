@@ -11,11 +11,10 @@ You may wanna know why risa? - well, it just a thing that I like to name my proj
 
 ## Things to do
 
-- [ ] Dark Theme (cause I know that you don't like light themes)
+- [x] Dark Theme (cause I know that you don't like light themes)
 - [ ] Multi-language support
 - [ ] Finish skin parser
 - [ ] Skin search filters
-- [x] Placeholder server (useless now)
 - [ ] Use separate CDN for skins
 
 more to come, I think...
@@ -24,4 +23,5 @@ more to come, I think...
 
 - [Vue.js](http://vuejs.org/) - all the dynamic stuff
 - [Bootstrap](https://getbootstrap.com/) - styles (although, I still used some of my stylesheets)
+- [Font Awesome](https://fontawesome.com/) - icons, these guys are *awesome*! :^)
 - [Node.js](https://nodejs.org/) - (TODO) skin parser, used to add skins into [`meta.json`](https://github.com/aneyo/risa/blob/master/meta.json)
