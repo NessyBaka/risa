@@ -47,6 +47,19 @@ let cm = {
             return "https://www.youtube.com/embed/"+p+"?origin=http://a.nessy.pw/"
 
         return link
+    },
+    copy: function(v=null,d="https://aneyo.github.io/risa/"){
+        let c = document.querySelector('#copy-value')
+            c.setAttribute('type', 'text');
+            c.value = d+"#"+v;
+            c.select();
+
+        try {
+            document.execCommand('copy');
+        } catch (e) {console.error(e)}
+
+        c.setAttribute('type', 'hidden')
+        window.getSelection().removeAllRanges()
     }
 }
 
@@ -54,14 +67,14 @@ let cm = {
 Vue.component('screenshots', {
     props:['skin'],
     methods:cm,
-    template:`<div class="card-img-top screenshots" :class="{nsfw:skin.nsfw}">
+    template:`<div class="nr card-img-top screenshots" :class="{nsfw:skin.nsfw}">
     <screenshot
         v-if="skin.img && skin.img.length>0"
         v-for="img in this.skin.img"
         :key="img" :src="img"></screenshot>
     <div
         v-if="this.skin.v && (!this.skin.img || this.skin.img.length <= 2)"
-        class="sblock video"
+        class="screenshot video"
         title="(Video Preivew) Click to open the video preview"
         :style="{backgroundImage: this.urler('https://img.youtube.com/vi/'+this.yte(this.skin.v,true)+'/0.jpg')}"
         @click="$emit('video-click', skin.v)"></div>
@@ -72,7 +85,7 @@ Vue.component('screenshot', {
     props:['src'],
     methods:cm,
     template:`<a
-    class="sblock screenshot"
+    class="nr screenshot"
         :href="src" target="_blank"
         title="Click on image to open it in full size."
         :style="{backgroundImage: this.urler(this.itp(this.src))}"></a>`
@@ -82,11 +95,17 @@ Vue.component('screenshot', {
 Vue.component('skin-title', {
     props:['skin'],
     template:`
-    <h5 class="card-title skin-name" :title="this.skin.name||'Fancy Skin #'+this.skin.id">
-        <a
-            class="text-dark" :href="'#'+this.skin.id"
-            @click="$emit('title-click', skin.id)">{{this.skin.name||"Fancy Skin #"+this.skin.id}}</a>
-        <a :href="'#'+skin.id" class="btn btn-link sqs-btn title-linker-btn" target="_blank"></a>
+    <h5 class="nr card-title name" :title="this.skin.name||'Fancy Skin #'+this.skin.id">
+        <div style="flex:1">
+            <a
+                class="text-light" :href="'#'+this.skin.id"
+                @click="$emit('title-click', skin.id)">{{this.skin.name||"Fancy Skin #"+this.skin.id}}</a>
+            <br>
+            <span class="nr author text-light">By <a :href="this.skin.alink">{{this.skin.author}}</a></span>
+        </div>
+        <a  href="#copy"
+            @click="$emit('copy-click', skin.id)"
+            title="Copy skin link to clipboard"><i class="far fa-clipboard"></i></a>
     </h5>`
 })
 
@@ -104,14 +123,14 @@ Vue.component('skin-title', {
     + "nsfw" - not. safe. for. work. (maybe)
 */
 Vue.component('skin-tags', {
-    props:['skin'],
-    template:`<div class="card-tags" v-if="!this.skin.fnt">
-    <span class="badge badge-danger" v-if="this.skin.nsfw">NSFW</span>
-    <span class="badge badge-warning" v-if="!this.skin.img || this.skin.img.length<=0">No screenshots</span>
-    <span class="badge badge-warning" v-if="this.skin.v && (!this.skin.img || (!this.skin.img.s && !this.skin.img.p))">Only video</span>
-    <span class="badge badge-info" v-if="!this.skin.link">Unknown origin</span>
-    <span class="badge badge-info" v-if="!this.skin.author">Unknown author</span>
-    <span class="badge badge-success" v-if="this.skin.mod">Modded/Mixed</span>
+    props:['skin','card'],
+    template:`<div :class="{nr:true,tags:true,boxed:this.card}" v-if="!this.skin.fnt">
+    <span class="tag badge badge-danger" v-if="this.skin.nsfw">NSFW</span>
+    <span class="tag badge badge-warning" v-if="!this.skin.img || this.skin.img.length<=0">No screenshots</span>
+    <span class="tag badge badge-warning" v-if="this.skin.v && (!this.skin.img || (!this.skin.img.s && !this.skin.img.p))">Only video</span>
+    <span class="tag badge badge-info" v-if="!this.skin.link">Unknown origin</span>
+    <span class="tag badge badge-info" v-if="!this.skin.author">Unknown author</span>
+    <span class="tag badge badge-success" v-if="this.skin.mod">Modded/Mixed</span>
 </div>`
 })
 

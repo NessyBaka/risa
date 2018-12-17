@@ -1,23 +1,24 @@
 let d = {
-    cookies:{},
-    found:[],
-    showing:[],
-    meta:undefined,
-    video:null,
-    skinID:null,
+    found  : [],
+    showing: [],
+    indexes: undefined,
+    skins  : undefined,
+    _m     : undefined,
+    video  : null,
+    skinID : null,
 
     //Params
     max:6,//Max items per page
 
     //Get/Set variables
-    _search_query:'',
-    _page_now:0,
-    _skin:null,
+    _search_query: undefined,
+    _page_now    : 0,
+    _skin        : null,
 
     //Getters
     get search_query(){return this._search_query},
     get page(){return this._page_now},
-    get vskin(){return this._skin},
+    get modal(){return this._skin},
     //Setters
     set search_query(query){
         this._search_query = query||'';
@@ -27,45 +28,46 @@ let d = {
         this._page_now = page_query >= 0 ? page_query : 0;
         this.show(this._page_now);
     },
-    set vskin(skin_ID){
+    set modal(skin_ID){
         this.skinID = skin_ID;
         this._skin = this.searchSkin(skin_ID);
     },
 
     //Functions
     start:()=>{
-        //meta.json?t=<timestamp> - CACHING H A C K S
-        fetch('./meta.json?t='+Date.now()).then(r=>{
-            r.json().then(j=>{
-                d.meta=j;
-                d.meta.skins = d.meta.skins.reverse();
-                d.checkForStartupCookies();
-                d.checkHashAtStart();
-                d.search();
-            })
-        }).catch(e=>{console.log(e)})
+        d.grab('./meta.json?t='+Date.now()).then(_=>{
+            d.checkHashAtStart();
+            d.search();
+        }).catch(e=>console.log(e))
     },
+    grab:(p='./meta.json')=>new Promise((done,oof)=>{
+        //meta.json?t=<timestamp> - CACHING H A C K S
+        fetch(p).then(r=>{
+            r.json().then(j=>{
+                d._meta   = j;
+                d.indexes = j.index;
+                d.skins   = j.skins;
+
+                done()
+            }).catch(e=>console.error(e))
+        }).catch(e=>{console.error(e)})
+    }),
     search:(query)=>{
         d.page = 0;
 
         if(!query){
-            d.found = d.meta.skins;
+            d.found = d.skins;
             d.show(0)
             return;
         }
 
         let found = [],
-            length = d.meta.skins.length;
+            qpattern = new RegExp(query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i'),
+            length = d.indexes.length;
 
-        for(var i = 0; i < length; i++){
-            let n = d.meta.skins[i].name,
-                q = new RegExp(query, 'i')
-
-            if(d.meta.skins[i].author) n += " " + d.meta.skins[i].author
-
-            if((q).exec(n))
-                found.push(d.meta.skins[i])
-        }
+        for(var i = 0; i < length; i++)
+            if(qpattern.test(d.indexes[i]))
+                found.push(d.skins[i])
 
         d.found = found;
         d.show(0)
@@ -80,29 +82,17 @@ let d = {
             d.showing.push(d.found[i])
         }
     },
-    checkCookies(){
-        let c = document.cookie.split(';');
-        for(let i = 0; i < c.length; i++){
-            let cookie = c[i].split('=');
-            d.cookies[cookie[0]] = cookie[1]
-        };
-    },
-    checkForStartupCookies(){
-        d.checkCookies();
-        document.cookie += "v="+Date.now().toString()+';';
-        /* TODO: (not here) check for time changes */
-    },
     checkHashAtStart(){
-        d.vskin=document.location.hash.substr(1,document.location.hash.length);
+        d.modal=document.location.hash.substr(1,document.location.hash.length);
     },
     searchSkin(ID){
         if(ID==null)
             return ID
 
-        let l = d.meta.skins.length;
+        let l = d.skins.length;
         for(let i = 0; i < l;i++){
-            if(d.meta.skins[i].id == ID)
-                return d.meta.skins[i]
+            if(d.skins[i].id == ID)
+                return d.skins[i]
         }
 
         return null;

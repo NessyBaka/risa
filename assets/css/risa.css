@@ -1,6 +1,7 @@
 body{
     margin: 0;
     width: 100vw;
+    background:var(--nr-dark);
 }
 noscript{
     display: block;
@@ -152,7 +153,7 @@ nav.navbar{
     display: inline-block;
 }
 .linker-btn{
-    background-image: url(/assets/png/link.png);
+    /*background-image: url(/assets/png/link.png);*/
     background-size: 1rem;
     background-position: center;
     background-repeat: no-repeat;
@@ -229,7 +230,7 @@ nav.navbar{
 
 .yt-btn{
     border-color: #FF0000;
-    background-image: url(/assets/png/yt_red.png);
+    /*background-image: url(/assets/png/yt_red.png);*/
     background-size: 70%;
     background-position: center;
     background-repeat: no-repeat;
@@ -241,7 +242,7 @@ nav.navbar{
         background-image .15s ease-in-out;
 }
 .yt-btn:hover{
-    background-image: url(/assets/png/yt_light.png);
+    /*background-image: url(/assets/png/yt_light.png);*/
     background-color: #FF0000;
 }
 .view-close-btn{
@@ -251,14 +252,14 @@ nav.navbar{
     padding: 5px;
     height: 30px;
     width: 30px;
-    background-image: url(/assets/svg/close-icon.svg);
+    /*background-image: url(/assets/svg/close-icon.svg);*/
     background-size: 100%;
     background-position: center;
     z-index: 6980;
     cursor: pointer;
 }
 .title-linker-btn{
-    background-image: url(/assets/png/link-dark.png);
+    /*background-image: url(/assets/png/link-dark.png);*/
     background-position: center;
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -272,4 +273,32 @@ nav.navbar{
 }
 .form-search{
     margin: 0 1rem !important;
+}
+/* new design elements */
+:root{
+	--dark:#33302e !important;
+	--nr-dark:#1f1b18;
+
+	background-color:#1f1b18;
+}
+.nr.navbar-dark{
+	background-color:var(--dark);
+}
+.nr.author{
+	font-size:.85rem;
+}
+.nr.search-button{
+	
+}
+.nr.search-bar{
+	width: 100vw;
+	background-color: var(--dark);
+	display: flex;
+	padding:5px 15px;
+}
+.nr.search-bar input{
+	flex:1;
+	border:none;
+	color:white;
+	background:transparent;
 }
