@@ -2,7 +2,7 @@
 
 Risa - is a small project writen by aneyo.
 
-## [aneyo.github.io/risa](https://aneyo.github.io/risa)
+## [risa.aneyo.live](http://risa.aneyo.live/)
 
 You may wanna know why risa? - well, it just a thing that I like to name my projects with my loved characters/VA names, so in 25th of august (4 days before this project was created) was [Imai Lisa](http://bandori.wikia.com/wiki/Imai_Lisa) birthday, so yeah `Lisa => Risa`.
 > There's no meaning in this project name whatsoever
