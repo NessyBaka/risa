@@ -40,15 +40,12 @@ Vue.component("skin", {
     }
   },
   mounted() {
-    if (this.selected)
-      this.$nextTick(_ =>
-        setTimeout(
-          _ =>
-            (this.$el.ownerDocument.documentElement.scrollTop =
-              this.index * 81),
-          100
-        )
-      );
+    if (this.selected) this.$nextTick(() => setTimeout(this.scrollTo, 100));
+  },
+  methods: {
+    scrollTo() {
+      this.$el.ownerDocument.documentElement.scrollTop = this.index * 81;
+    }
   }
 });
 

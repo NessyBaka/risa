@@ -1,6 +1,6 @@
 const DATA_URL = "./meta.json";
 
-const __risa__ = new Vue({
+new Vue({
   el: "body > div:first-child",
   data: {
     window: {
@@ -74,19 +74,19 @@ const __risa__ = new Vue({
       this.list.fuse.base = new Fuse(this.list.data, this.list.fuse.options);
     },
     searchForData() {
-      if (!!this.list.query)
+      if (this.list.query)
         this.list.show = this.list.fuse.base.search(this.list.query);
       else this.list.show = this.list.data;
     },
     selectSkin(ID) {
       if (!ID) return;
 
-      if (ID == this.list.selected) this.list.selected = null;
+      if (ID === this.list.selected) this.list.selected = null;
       else this.list.selected = ID;
     },
     theme(theme_name){
       if(!theme_name) theme_name = this.$cookies.get("theme");
-      if(this.$cookies.get("theme") != theme_name) this.$cookies.set("theme", theme_name) 
+      if(this.$cookies.get("theme") !== theme_name) this.$cookies.set("theme", theme_name) 
       this.$el.ownerDocument.documentElement.className = theme_name;
       this.menu.theme = theme_name;
     }
