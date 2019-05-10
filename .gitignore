@@ -10,5 +10,13 @@
 /node
 # VSCode settings
 /.vscode
-# Re:risa
-/new
+# Temp files
+/.temp
+# Old files I won't hide
+# */_old
+
+# remove it!
+/i
+/assets/pwa-icons
+/assets/vue
+/meta.test.json
