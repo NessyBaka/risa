@@ -1,4 +1,4 @@
-## ![Lisa's signature](https://vignette.wikia.nocookie.net/bandori/images/2/20/Imai_Lisa_Signature.png/revision/latest?cb=20180925071359)
+## ![Lisa's signature](https://rawcdn.githack.com/aneyo/risa/ba0fad20378bc1a01cc6957782ac768a55d23b69/risa_sign.svg)
 
 [![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![Website is *always* up, thanks shields.io <3](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
@@ -35,6 +35,7 @@ Well, there's a *new* version coming soon™
 - [Font Awesome](https://fontawesome.com/) - Font icons, these guys are *awesome*!
 - [Fuse.js](https://fusejs.io/) - *Lightweight [fuzzy-search](https://en.wikipedia.org/wiki/Approximate_string_matching) library*, It's really **that** good
 - [alfhen/vue-cookie](https://github.com/alfhen/vue-cookie) - Vue plugin to work with cookies 🍪
+- [raw.githack](https://raw.githack.com/) - Where raw svg from github is hosted for [readme file](https://github.com/aneyo/risa/blob/master/README.md) ♥
 
 ## Also
 
