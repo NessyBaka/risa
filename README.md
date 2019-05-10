@@ -34,7 +34,7 @@ Well, there's a *new* version coming soon™
 - [Vue.js](http://vuejs.org/) - Main framework
 - [Font Awesome](https://fontawesome.com/) - Font icons, these guys are *awesome*!
 - [Fuse.js](https://fusejs.io/) - *Lightweight [fuzzy-search](https://en.wikipedia.org/wiki/Approximate_string_matching) library*, It's really **that** good
-- [alfhen/vue-cookie](https://github.com/alfhen/vue-cookie) - Vue plugin to work with cookies 🍪
+- [cmp-cc/vue-cookies](https://github.com/cmp-cc/vue-cookies) - Vue plugin to work with cookies 🍪
 - [raw.githack](https://raw.githack.com/) - Where raw svg from github is hosted for [readme file](https://github.com/aneyo/risa/blob/master/README.md) ♥
 
 ## Also
