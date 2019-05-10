@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta
       name="Description"
-      content="It's not the skins db, it's just a small osu! skin collection that we love to use."
+      content="Risa - a small project created to *host* a small skin collection for a game called osu!"
     />
     <meta name="theme-color" content="#DD2200" />
     <link rel="manifest" href="https://risa.aneyo.live/manifest.json" />
@@ -38,38 +38,31 @@
     <div :class="{ compact }" :style="{ display: 'block' }">
       <div class="fixed header">
         <div>
-          <i head-search-icon class="fas fa-search"></i>
-          <div head-search-input>
+          <i class="head-search-icon fas fa-search"></i>
+          <div class="head-search-input">
             <input
-              placeholder="リサ"
               v-model="list.query"
+              placeholder="リサ"
               @input="searchForData"
             />
           </div>
           <a
-            head-menu-icon
-            class="fas fa-caret-square-up"
             href="#"
-            v-if="menu.opened"
-            @click="menu.opened=false"
-          ></a>
-          <a
-            head-menu-icon
-            class="fas fa-paint-brush"
-            href="#"
-            v-else
-            @click.prevent="menu.opened=true"
+            class="head-menu-icon fas"
+            :class="iconMenuSwitcher"
+            @click="menu.opened=!menu.opened"
           ></a>
         </div>
       </div>
       <div class="fixed menu" :class="[menu.opened?'opened':'']">
-        <div menu-content>
+        <div class="menu-content">
           <a
-            theme-button
-            :class="[scheme]"
-            href="#"
-            @click.prevent="theme(scheme)"
             v-for="scheme in themes"
+            :key="scheme"
+            href="#"
+            class="theme-button"
+            :class="[scheme]"
+            @click.prevent="theme(scheme)"
             ><i class="fas fa-check" v-if="menu.theme==scheme"></i
           ></a>
         </div>
@@ -77,30 +70,37 @@
       <div class="fixed footer">
         <div>
           <i class="fas fa-info"></i>
-          <span class="footer-status" v-if="list.show">
+          <span
+            v-if="list.show"
+            key="footer-status-normal"
+            class="footer-status"
+          >
             <span>Found {{ list.show.length }} skins</span>
             <span v-if="window.width > 400"
               >, click on the skin title to see more</span
             >
           </span>
-          <span class="footer-status" v-else></span>
-          <a href="https://github.com/aneyo/risa"
+          <span v-else key="footer-status-none" class="footer-status"></span>
+          <a
+            href="https://github.com/aneyo/risa"
+            target="_blank"
+            rel="noreferrer"
             ><i class="fab fa-github"></i
           ></a>
         </div>
       </div>
-      <div class="error-message" v-if="list.errors">
+      <div v-if="list.errors" class="error-message">
         <span>{{ list.error }}</span>
       </div>
-      <skin
+      <skin-item
+        v-for="(result, index) in list.show"
+        :key="result.id"
         :class="{ show: result.id === list.selected }"
         :data="result"
-        :key="result.id"
         :index="index"
         :selected="result.id === list.selected"
         @select="selectSkin"
-        v-for="(result, index) in list.show"
-      ></skin>
+      ></skin-item>
     </div>
     <noscript><span>Javascript is required.</span></noscript>
     <script src="./assets/js/risachi.min.js"></script>

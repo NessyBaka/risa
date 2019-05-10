@@ -1,7 +1,9 @@
+/*eslint no-undef: 0*/
 const DATA_URL = "./meta.json";
 
 new Vue({
   el: "body > div:first-child",
+  name: "Risa",
   data: {
     window: {
       width: 0,
@@ -31,28 +33,35 @@ new Vue({
       opened: false,
       theme: null
     },
-    themes: ["milk-light","cute-brown","deep-dark"]
+    themes: ["milk-light", "cute-brown", "deep-dark"]
   },
   computed: {
     compact() {
       return this.window.width <= 700;
+    },
+    iconMenuSwitcher() {
+      return [this.menu.opened ? "fa-caret-square-up" : "fa-paint-brush"];
     }
   },
+  /* Events */
   created() {
-    this.list.selected = document.location.hash.slice(1,document.location.hash.length)
+    this.list.selected = document.location.hash.slice(
+      1,
+      document.location.hash.length
+    );
     this.fetchData(DATA_URL);
-    window.addEventListener("resize", this._onResize);
-    this._onResize();
+    window.addEventListener("resize", this.$_onResize);
+    this.$_onResize();
   },
   mounted() {
     this.theme();
   },
   destroyed() {
-    window.removeEventListener("resize", this._onResize);
-    this._onResize();
+    window.removeEventListener("resize", this.$_onResize);
   },
+  /* Non-Reactive Properties */
   methods: {
-    _onResize() {
+    $_onResize() {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
     },
@@ -84,11 +93,11 @@ new Vue({
       if (ID === this.list.selected) this.list.selected = null;
       else this.list.selected = ID;
     },
-    theme(theme_name){
-      if(!theme_name) theme_name = this.$cookies.get("theme");
-      if(this.$cookies.get("theme") !== theme_name) this.$cookies.set("theme", theme_name) 
-      this.$el.ownerDocument.documentElement.className = theme_name;
-      this.menu.theme = theme_name;
+    theme(theme_name) {
+      if (!theme_name) theme_name = this.$cookies.get("theme");
+      if (this.$cookies.get("theme") !== theme_name)
+        this.$cookies.set("theme", theme_name);
+      this.$el.ownerDocument.documentElement.className = this.menu.theme = theme_name;
     }
   }
 });

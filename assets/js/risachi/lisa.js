@@ -1,33 +1,16 @@
-Vue.component("skin", {
-  props: ["data", "selected", "index"],
-  template: `
-  <div class="skin">
-    <preview
-      :thumbnail="data.thumbnail"
-      :album="data.img"
-      :video="data.v"
-      :large="selected"
-      :nsfw="data.nsfw"
-      :id="data.id"
-      />
-    <div info-block>
-      <div meta>
-        <a meta-name :href="'#'+data.id" @click="$emit('select', data.id)">{{data.name}}</a>
-        <div meta-tags>
-          <span class="nsfw tag" v-if="data.nsfw"></span>
-          <span :class="[data.mod?'modded':'original','tag']"></span>
-        </div>
-        <div meta-author>by <a class="author-link" :href="data.alink">{{data.author}}</a></div>
-      </div>
-      <div other>
-        <a source-button :href="data.link" v-if="data.link"><i class="fas fa-book"></i></a>
-        <a video-button :href="data.v" v-if="data.v"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-    <div download-button>
-      <a :href="download_link" :download="download_name"><i class="fas fa-download"></i></a>
-    </div>
-  </div>`,
+/*eslint no-undef: 0*/
+Vue.component("skin-item", {
+  props: {
+    data: {
+      type: Object,
+      required: true
+    },
+    selected: {
+      type: Boolean,
+      required: true
+    },
+    index: Number
+  },
   computed: {
     download_link() {
       return (
@@ -45,23 +28,76 @@ Vue.component("skin", {
   methods: {
     scrollTo() {
       this.$el.ownerDocument.documentElement.scrollTop = this.index * 81;
+    },
+    select() {
+      this.$emit("select", this.data.id);
     }
-  }
+  },
+  template: `
+  <div class="skin">
+    <preview-widget
+      :thumbnail="data.thumbnail"
+      :album="data.img"
+      :video="data.v"
+      :large="selected"
+      :nsfw="data.nsfw"
+      :id="data.id"
+    ></preview-widget>
+    <div class="info-block">
+      <div class="meta">
+        <a class="meta-name" :href="'#'+data.id" @click.prevent="select">{{data.name}}</a>
+        <div class="meta-tags">
+          <span class="nsfw tag" v-if="data.nsfw"></span>
+          <span :class="[data.mod?'modded':'original','tag']"></span>
+        </div>
+        <div class="meta-author">
+          by
+          <a class="author-link" target="_blank" rel="noreferrer" :href="data.alink" >{{data.author}}</a>
+        </div>
+      </div>
+      <div class="other">
+        <a class="source-button" target="_blank" rel="noreferrer" :href="data.link" v-if="data.link">
+          <i class="fas fa-book"></i>
+        </a>
+        <a class="video-button" target="_blank" rel="noreferrer" :href="data.v" v-if="data.v">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+    <div class="download-button">
+      <a :href="download_link" :download="download_name">
+        <i class="fas fa-download"></i>
+      </a>
+    </div>
+  </div>`
 });
 
-Vue.component("preview", {
-  props: ["thumbnail", "album", "video", "large", "nsfw", "id"],
-  template: `
-  <div class="preview" :class="{nsfw}">
-    <div class="album-controls" v-if="large && album && album.length > 0">
-      <a album-control href="#" @click.prevent="swipe(-1)"><i class="fas fa-angle-left"></i></a>
-      <a album-control href="#" @click.prevent="swipe(1)"><i class="fas fa-angle-right"></i></a>
-    </div>
-    <div class="lazy-album" v-if="large" ref="album">
-      <lazy class="album-image" :src="image" :key="image" v-for="image in album"></lazy>
-    </div>
-    <lazy class="lazy-preview" :src="thumbnail" v-else/>
-  </div>`,
+Vue.component("preview-widget", {
+  props: {
+    thumbnail: String,
+    album: Array,
+    video: String,
+
+    skinId: {
+      type: String,
+      required: false
+    },
+    large: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    nsfw: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  computed: {
+    hasImages() {
+      return this.album && this.album.length > 0;
+    }
+  },
   methods: {
     swipe(index) {
       this.$refs["album"].scroll(
@@ -69,24 +105,45 @@ Vue.component("preview", {
         0
       );
     }
-  }
+  },
+  template: `
+  <div class="preview" :class="{nsfw}">
+    <div v-if="large && hasImages" class="album-controls">
+      <a class="album-control" href="#" @click.prevent="swipe(-1)">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="album-control" href="#" @click.prevent="swipe(1)">
+        <i class="fas fa-angle-right"></i>
+      </a>
+    </div>
+
+    <div v-if="large && hasImages" ref="album" key="large-preview" class="lazy-album">
+      <lazy v-for="image in album" :key="image" class="album-image" :src="image"></lazy>
+    </div>
+    <lazy v-else-if="thumbnail" key="small-preview" class="lazy-preview" :src="thumbnail"></lazy>
+  </div>`
 });
 
 Vue.component("lazy", {
-  props: ["src"],
+  props: {
+    src: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       loading: true
     };
   },
-  template: `
-  <div :class="{loading}">
-    <i class="loader fas fa-spinner" v-if="loading && src"></i>
-    <img :src="src" @load="onLoad" :style="{ display: loading ? 'none':null }" v-if="src"/>
-  </div>`,
-  methods: {
-    onLoad() {
-      this.loading = false;
+  computed: {
+    isLoading() {
+      return { display: this.loading ? "none" : null };
     }
-  }
+  },
+  template: `
+  <div :class="{ loading }">
+    <i v-if="loading && src" class="loader fas fa-spinner"></i>
+    <img v-if="src" :src="src" :style="isLoading" @load="loading = false"></img>
+  </div>`
 });
