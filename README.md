@@ -1,6 +1,6 @@
 ## ![Lisa's signature](https://rawcdn.githack.com/aneyo/risa/ba0fad20378bc1a01cc6957782ac768a55d23b69/risa_sign.svg)
 
-[![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/aneyo/risa/blob/master/LICENSE)
 [![Website is *always* up, thanks shields.io <3](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
 [![CodeBeat](https://codebeat.co/badges/2afc5409-17eb-4a02-83a2-df442f92baf2)](https://codebeat.co/projects/github-com-aneyo-risa-master)
 [![Skin collection count](https://img.shields.io/badge/dynamic/json.svg?label=skins%20count&query=%24.skins.length&url=https%3A%2F%2Fraw.githubusercontent.com%2Faneyo%2Frisa%2Fmaster%2Fmeta.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
