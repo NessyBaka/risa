@@ -1,20 +1,8 @@
 {
-    "short_name":"Risa",
-    "name":"Risa - skin collection for osu!",
+    "short_name":"risa",
+    "name":"Risa - osu! skin collection",
     "start_url":"/",
     "background_color":"#191717",
     "display": "standalone",
-    "theme_color": "#191717",
-    "icons": [
-        {
-            "src": "./assets/pwa-icons/192x.png",
-            "type": "image/png",
-            "sizes": "192x192"
-        },
-        {
-            "src": "./assets/pwa-icons/512x.png",
-            "type": "image/png",
-            "sizes": "512x512"
-        }
-    ]
+    "theme_color": "#191717"
 }

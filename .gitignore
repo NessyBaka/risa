@@ -14,3 +14,8 @@
 /assets/js/_old
 /assets/css/_old
 /assets/css/.node
+# remove it!
+/i
+/assets/pwa-icons
+/assets/vue
+/meta.test.json
