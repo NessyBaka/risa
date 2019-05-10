@@ -1,32 +1,45 @@
-# Risa Project
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+# aneyo/risa
 
-Risa - is a small project writen by aneyo.
+[![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![Website is *always* up, thanks shields.io <3](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
+[![CodeBeat](https://codebeat.co/badges/2afc5409-17eb-4a02-83a2-df442f92baf2)](https://codebeat.co/projects/github-com-aneyo-risa-master)
+[![Skin collection count](https://img.shields.io/badge/dynamic/json.svg?label=skins%20count&query=%24.skins.length&url=https%3A%2F%2Fraw.githubusercontent.com%2Faneyo%2Frisa%2Fmaster%2Fmeta.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
+[![Twitch](https://img.shields.io/badge/-%2Faneyuu-%236441A4.svg?style=flat&logo=twitch)](https://twitch.tv/aneyuu)
+[![Twitter](https://img.shields.io/twitter/follow/aneyoof.svg?style=social)](https://twitter.com/aneyoof)
 
-## [risa.aneyo.live](http://risa.aneyo.live/)
+**Risa** - a _small_ project created to "host" a _small_ skin collection for a game called [osu!](https://osu.ppy.sh)
 
-You may wanna know why risa? - well, it just a thing that I like to name my projects with my loved characters/VA names, so in 25th of august (4 days before this project was created) was [Imai Lisa](http://bandori.wikia.com/wiki/Imai_Lisa) birthday, so yeah `Lisa => Risa`.
+## [**risa**.aneyo.live](http://risa.aneyo.live/)
+
+You may wanna know why [risa](https://github.com/aneyo/risa)? Thing is - I like to name my projects with my beloved Character's or VA's names, and it so happened that 4 days before the project was created it was a [Imai Lisa's](http://bandori.wikia.com/wiki/Imai_Lisa) birthday (25.08), so yeah, ~~I had no choice~~.  
+Also you might ask *why **R**isa instead of **L**isa?*  Well, [there's some phonetical differences between Japanese L and English L](https://en.wikipedia.org/wiki/Perception_of_English_/r/_and_/l/_by_Japanese_speakers) and I like Japanese pronunciation more so I used it as a project name :)
+
 > There's no meaning in this project name whatsoever
 
-****
+---
 
 ## Things to do
 
 - [x] Dark Theme (cause I know that you don't like light themes)
-- [ ] Multi-language support
-- [ ] Finish skin parser
-- [ ] Skin search filters
-- [ ] Use separate CDN for skins
+- [ ] ~~Multi-language support~~
+- [ ] Finish skin parser *(I should make another repo for this one)*
+- [ ] ~~Skin search filters~~
+- [ ] Stop hosting skin files at Pages hosting
+- [ ] Finish the rework
 
-more to come, I think...
+Well, there's a *new* version coming soon™
 
-## Things that was used in this project
+## What keeps risa working ♥️
 
-- [Vue.js](http://vuejs.org/) - all the dynamic stuff
-- [Bootstrap](https://getbootstrap.com/) - styles (although, I still used some of my stylesheets)
-- [Font Awesome](https://fontawesome.com/) - icons, these guys are *awesome*! :^)
-- [Node.js](https://nodejs.org/) - (TODO) skin parser, used to add skins into [`meta.json`](https://github.com/aneyo/risa/blob/master/meta.json)
+- [Vue.js](http://vuejs.org/) - Main framework
+- [Font Awesome](https://fontawesome.com/) - Font icons, these guys are *awesome*!
+- [Fuse.js](https://fusejs.io/) - *Lightweight [fuzzy-search](https://en.wikipedia.org/wiki/Approximate_string_matching) library*, It's really **that** good
+- [alfhen/vue-cookie](https://github.com/alfhen/vue-cookie) - Vue plugin to work with cookies 🍪
 
-also
+## Also
+
+Don't ever host libs at your site's repo
+
 ![oh no](https://i.imgur.com/vAQpvfF.png)
-> most of issues came from vue.js package so I should remove it lol
+
+> ~~most of issues came from vue.js package so I should remove it lol~~ done, use CDN services for that
