@@ -40,6 +40,10 @@ Well, there's a *new* version coming soon™
 
 Don't ever host libs at your site's repo
 
+<<<<<<< HEAD
+=======
+also  
+>>>>>>> c3c48ebd2b2cbc43619dfd95a2d699022fe62b2e
 ![oh no](https://i.imgur.com/vAQpvfF.png)
 
 > ~~most of issues came from vue.js package so I should remove it lol~~ done, use CDN services for that
