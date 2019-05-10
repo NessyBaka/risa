@@ -6,9 +6,11 @@
 /backups
 # MacOS thingy
 .DS_Store
-# node - TODO: make parser available open wide (it's not ready yet)
-/node
 # VSCode settings
 /.vscode
-# Re:risa
-/new
+# Temp files
+/.temp
+# Old files and node scripts
+/assets/js/_old
+/assets/css/_old
+/assets/css/.node
