@@ -19,3 +19,5 @@
 /assets/pwa-icons
 /assets/vue
 /meta.test.json
+index.*.html
+index.*.*.html
