@@ -27,6 +27,6 @@ more to come, I think...
 - [Font Awesome](https://fontawesome.com/) - icons, these guys are *awesome*! :^)
 - [Node.js](https://nodejs.org/) - (TODO) skin parser, used to add skins into [`meta.json`](https://github.com/aneyo/risa/blob/master/meta.json)
 
-also
+also  
 ![oh no](https://i.imgur.com/vAQpvfF.png)
 > most of issues came from vue.js package so I should remove it lol
