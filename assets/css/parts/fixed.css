@@ -1,0 +1,20 @@
+.fixed /* Fixed block */ {
+  position: fixed;
+  width: 100%;
+  height: var(--bar);
+  display: flex;
+  justify-content: center;
+  color: var(--mid);
+  left: 0;
+  z-index: 6969;
+}
+
+.fixed > :first-child /* Fixed block content */ {
+  display: flex;
+  align-items: center;
+  background-color: var(--low);
+  border-left: var(--border);
+  border-right: var(--border);
+  max-width: 1000px;
+  flex: 1;
+}

@@ -1,0 +1,94 @@
+.skin > .preview {
+  width: 142px;
+  background-color: #0a0a0a;
+  transition: width 250ms ease-in-out;
+  will-change: width;
+}
+
+.show.skin > .preview {
+  width: 427px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skin > .preview.nsfw {
+  background-image: url("../../img/nsfw.png");
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.skin > .preview.nsfw > div {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.skin > .preview.nsfw:hover > div {
+  opacity: 1;
+}
+
+.preview > .lazy-preview {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.lazy-preview > img {
+  height: 100%;
+}
+
+.preview > .lazy-album {
+  height: 100%;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.preview > .lazy-album::-webkit-scrollbar {
+  display: none;
+}
+
+.lazy-album > .album-image {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  background-color: #0a0a0a;
+}
+
+.lazy-album > .album-image > img {
+  height: 100%;
+}
+
+.preview .loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  color: #fafafa;
+  font-size: 2rem;
+  animation: 1500ms linear 0s infinite normal none running spin;
+}
+
+.album-controls {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  opacity: .25;
+}
+
+.album-controls > a[album-control] {
+  font-size: 1.25rem;
+  color: #fafafa;
+  margin: 5px 8px;
+}
+
+.album-controls:hover {
+  opacity: 1;
+  background-color: #26262691;
+}

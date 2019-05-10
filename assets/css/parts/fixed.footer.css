@@ -1,0 +1,27 @@
+.fixed.footer {
+  bottom: 0;
+  user-select: none;
+}
+
+.fixed.footer > :first-child {
+  border-top: var(--border);
+  justify-content: flex-start;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.fixed.footer > :first-child > :first-child {
+  margin: 0 1rem 0 1rem !important;
+}
+
+.fixed.footer > :first-child > span.footer-status {
+  margin-right: 1rem;
+  flex:1;
+}
+
+.fixed.footer > :first-child > :last-child {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  color: var(--mid);
+}

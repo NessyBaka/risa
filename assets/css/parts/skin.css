@@ -1,0 +1,43 @@
+.skin {
+  height: 80px;
+  background-color: var(--low);
+  transition: height 250ms ease-in-out;
+  display: flex;
+  border-bottom: var(--border);
+  will-change: height;
+}
+
+.show.skin {
+  height: 240px;
+}
+
+.skin > [download-button] {
+  display: flex;
+}
+
+.skin > [download-button] > a[download] {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0.5rem 0 0;
+  border-radius: 0.5rem;
+  color: var(--high);
+  font-size: 1.25rem;
+}
+.skin > [download-button] > a[download]:hover,
+.skin > [download-button] > a[download]:focus {
+  color: var(--mid);
+  background-color: var(--high);
+}
+
+.show.skin > [download-button] > a[download] {
+  color: var(--low);
+  background-color: var(--high);
+}
+
+.show.skin > [download-button] > a[download]:hover,
+.show.skin > [download-button] > a[download]:focus {
+  background-color: var(--mid);
+}

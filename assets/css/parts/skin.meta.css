@@ -1,0 +1,69 @@
+.skin > div[info-block] {
+  flex: 1;
+  margin: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+div[info-block] > div[meta] {
+  flex: 1;
+}
+
+div[meta] > a[meta-name] {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--high);
+  text-decoration: none;
+}
+div[meta] > div[meta-tags] {
+  font-size: 14px;
+}
+div[meta] > div[meta-author] {
+  font-size: 14px;
+}
+
+div[meta] > div[meta-tags] > .nsfw.tag::after {
+  content: "NSFW";
+  color: #f00;
+  font-weight: bold;
+}
+div[meta] > div[meta-tags] > .original.tag::after {
+  content: "Original";
+  color: #228b22;
+}
+div[meta] > div[meta-tags] > .modded.tag::after {
+  content: "Modded";
+  color: #f4a460;
+}
+
+div[meta] > div[meta-author] > .author-link {
+  color: var(--high);
+}
+
+.skin > div[info-block] > div[other] {
+  display: none;
+}
+
+.skin.show > div[info-block] > div[other] {
+  display: flex;
+  margin-top: 1rem;
+}
+
+div[info-block] > div[other] > a {
+  color: var(--high);
+}
+
+div[info-block] > div[other] > a::after{
+  margin-left: 5px;
+}
+
+div[info-block] > div[other] > a:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+div[info-block] > div[other] > a[source-button]::after {
+  content: "Source";
+}
+div[info-block] > div[other] > a[video-button]::after {
+  content: "Video Preview";
+}
