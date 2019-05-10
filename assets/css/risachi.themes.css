@@ -6,8 +6,9 @@
 
 .deep-dark {
   --low: #000000;
-  --mid: #262626;
+  --mid: #616161;
   --high: #f5f5f5;
+  --border: 1px solid #262626;
 }
 
 .milk-light {

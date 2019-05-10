@@ -11,11 +11,11 @@
   height: 240px;
 }
 
-.skin > [download-button] {
+.skin > .download-button {
   display: flex;
 }
 
-.skin > [download-button] > a[download] {
+.skin > .download-button > [download] {
   width: 48px;
   height: 48px;
   display: flex;
@@ -26,18 +26,18 @@
   color: var(--high);
   font-size: 1.25rem;
 }
-.skin > [download-button] > a[download]:hover,
-.skin > [download-button] > a[download]:focus {
+.skin > .download-button > [download]:hover,
+.skin > .download-button > [download]:focus {
   color: var(--mid);
   background-color: var(--high);
 }
 
-.show.skin > [download-button] > a[download] {
+.show.skin > .download-button > [download] {
   color: var(--low);
   background-color: var(--high);
 }
 
-.show.skin > [download-button] > a[download]:hover,
-.show.skin > [download-button] > a[download]:focus {
+.show.skin > .download-button > [download]:hover,
+.show.skin > .download-button > [download]:focus {
   background-color: var(--mid);
 }

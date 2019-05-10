@@ -1,31 +1,31 @@
-body > div.compact > .skin {
+body > .compact > .skin {
 }
 
-body > div.compact > .skin > [download-button] {
+body > .compact > .skin > .download-button {
   display: none;
 }
 
-body > div.compact > .skin.show {
+body > .compact > .skin.show {
   flex-direction: column;
   height: auto;
 }
 
-body > div.compact > .skin.show > .preview {
+body > .compact > .skin.show > .preview {
   width: 100%;
   height: 240px;
 }
 
-body > div.compact > .skin.show > [download-button] {
+body > .compact > .skin.show > .download-button {
   display: flex;
 }
 
-body > div.compact > .skin.show > [download-button] > a[download] {
+body > .compact > .skin.show > .download-button > [download] {
   flex: 1;
   margin: 0;
   border-radius: 0;
   font-size: 1rem;
 }
-body > div.compact > .skin.show > [download-button] > a[download]::after {
+body > .compact > .skin.show > .download-button > [download]::after {
   content: "Download";
   margin-left: 5px;
 }

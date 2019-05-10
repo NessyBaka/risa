@@ -18,11 +18,11 @@
   background-repeat: no-repeat;
 }
 
-.skin > .preview.nsfw > div {
+.skin > .preview.nsfw > * {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
 }
-.skin > .preview.nsfw:hover > div {
+.skin > .preview.nsfw:hover >  {
   opacity: 1;
 }
 
@@ -82,7 +82,7 @@
   opacity: .25;
 }
 
-.album-controls > a[album-control] {
+.album-controls > .album-control {
   font-size: 1.25rem;
   color: #fafafa;
   margin: 5px 8px;

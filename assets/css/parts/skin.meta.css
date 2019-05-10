@@ -1,69 +1,69 @@
-.skin > div[info-block] {
+.skin > .info-block {
   flex: 1;
-  margin: 0.5rem 1rem;
+  margin: 8px 12px;
   display: flex;
   flex-direction: column;
 }
 
-div[info-block] > div[meta] {
+.info-block > .meta {
   flex: 1;
 }
 
-div[meta] > a[meta-name] {
+.meta > .meta-name {
   font-size: 1rem;
   font-weight: bold;
   color: var(--high);
   text-decoration: none;
 }
-div[meta] > div[meta-tags] {
+.meta > .meta-tags {
   font-size: 14px;
 }
-div[meta] > div[meta-author] {
+.meta > .meta-author {
   font-size: 14px;
 }
 
-div[meta] > div[meta-tags] > .nsfw.tag::after {
+.meta > .meta-tags > .nsfw.tag::after {
   content: "NSFW";
   color: #f00;
   font-weight: bold;
 }
-div[meta] > div[meta-tags] > .original.tag::after {
+.meta > .meta-tags > .original.tag::after {
   content: "Original";
   color: #228b22;
 }
-div[meta] > div[meta-tags] > .modded.tag::after {
+.meta > .meta-tags > .modded.tag::after {
   content: "Modded";
   color: #f4a460;
 }
 
-div[meta] > div[meta-author] > .author-link {
+.meta > .meta-author > .author-link {
   color: var(--high);
 }
 
-.skin > div[info-block] > div[other] {
+.skin > .info-block > .other {
   display: none;
 }
 
-.skin.show > div[info-block] > div[other] {
+.skin.show > .info-block > .other {
   display: flex;
   margin-top: 1rem;
 }
 
-div[info-block] > div[other] > a {
+.info-block > .other > * {
   color: var(--high);
 }
 
-div[info-block] > div[other] > a::after{
+.info-block > .other > ::after{
   margin-left: 5px;
 }
 
-div[info-block] > div[other] > a:not(:last-child) {
+.info-block > .other > :not(:last-child) {
   margin-right: 0.5rem;
 }
 
-div[info-block] > div[other] > a[source-button]::after {
+.info-block > .other > .source-button::after {
   content: "Source";
 }
-div[info-block] > div[other] > a[video-button]::after {
+.info-block > .other > .video-button::after {
   content: "Video Preview";
 }

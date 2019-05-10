@@ -6,16 +6,16 @@
   border-bottom: var(--border);
 }
 
-.fixed.header > :first-child > i[head-search-icon] /* Search Icon */ {
+.fixed.header > :first-child > .head-search-icon /* Search Icon */ {
   margin-left: 1rem;
 }
 
-.fixed.header > :first-child > div[head-search-input] /* Search Bar */ {
+.fixed.header > :first-child > .head-search-input /* Search Bar */ {
   flex: 1;
   padding: 0 0.5rem;
 }
 
-.fixed.header > :first-child > div[head-search-input] > input /* Input bar */ {
+.fixed.header > :first-child > .head-search-input > input /* Input bar */ {
   width: 100%;
   border: none;
   background: none;
@@ -23,22 +23,22 @@
   font-size: 1rem;
 }
 
-.fixed.header > :first-child > div[head-search-input] > input::placeholder /* Placeholder */ {
+.fixed.header > :first-child > .head-search-input > input::placeholder /* Placeholder */ {
   color: var(--mid);
   opacity: 1;
 }
 
-.fixed.header > :first-child > div[head-search-input] > input:focus {
+.fixed.header > :first-child > .head-search-input > input:focus {
   outline: none;
   border: none;
   color: var(--high);
 }
 
-.fixed.header > :first-child > div[head-search-input] > input::-ms-clear /* fucking edge */ {
+.fixed.header > :first-child > .head-search-input > input::-ms-clear /* fucking edge */ {
   display: none;
 }
 
-.fixed.header > :first-child > a[head-menu-icon] {
+.fixed.header > :first-child > .head-menu-icon {
   margin-right: 1rem;
   color: var(--mid);
   text-decoration: none;
@@ -54,14 +54,14 @@
   transform: translateY(0);
 }
 
-.fixed.menu > div[menu-content] {
+.fixed.menu > .menu-content {
   border-bottom: var(--border);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.fixed.menu > div[menu-content] > a[theme-button]{
+.fixed.menu > .menu-content > .theme-button{
   background-color: var(--low);
   color: var(--high);
   border-radius: 100%;
