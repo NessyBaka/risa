@@ -1,107 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="It's not the skins db, it's just a small osu! skin collection that we love to use.">
-    <meta name="theme-color" content="#191717">
-    <link rel="manifest" href="https://risa.aneyo.live/manifest.json">
-    <title>Risa</title>
-    <!--script src="./assets/vue/dev.js"></script-->
-    <script src="https://risa.aneyo.live/assets/vue/min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://risa.aneyo.live/assets/css/nr.min.css">
-</head>
-<body>
-    <input type="hidden" id="copy-value">
-    <noscript class="text-light">
-        <h2>Risa needs some JavaScript</h2>
-        <h6>If you want to use this site, please, turn on the JavaScript</h6>
-    </noscript>
-    <div
-        id="risa"
-        style="visibility: hidden" :style="{visibility: 'visible'}">
-        <!--
-            visibility bind thing is a ""cool hax"" that I've ""invented"" by myself while eating waffles with tea.
-            (It's still a thing cause I wan't to hide stuff from non-js users, tho it's very useless so I've made noscript's background transparent)
-        -->
-        <nav class="navbar navbar-dark nr">
-            <a class="navbar-brand float-left" href="http://aneyo.github.io/risa/">Risa</a>
-        </nav>
-        <nav class="nr search-bar">
-			<i class="nr fas fa-search search-icon text-light"></i>
-			<input v-model="search_query" placeholder="Search for skin or creator name" autocomplete="no" type="search"> 
-        </nav>
-        <div class="close-view" v-if="video">
-            <div class="close-background" @click="video=null"></div>
-            <div class="close-content video-preview">
-                <skin-video :video="video"></skin-video>
-            </div>
+<html lang="en" class="milk-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Welcome to Risa!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.4/fuse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-cookies@1.5.13/vue-cookies.min.js"></script>
+    <link href="./assets/css/risachi.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/solid.css"
+      integrity="sha384-ioUrHig76ITq4aEJ67dHzTvqjsAP/7IzgwE7lgJcg2r7BRNGYSK0LwSmROzYtgzs"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/brands.css"
+      integrity="sha384-i2PyM6FMpVnxjRPi0KW/xIS7hkeSznkllv+Hx/MtYDaHA5VcF0yL3KVlvzp8bWjQ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/fontawesome.css"
+      integrity="sha384-sri+NftO+0hcisDKgr287Y/1LVnInHJ1l+XC7+FOabmTTIK0HnE2ID+xxvJ21c5J"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div :class="{ compact }" :style="{ display: 'block' }">
+      <div class="fixed header">
+        <div>
+          <i head-search-icon class="fas fa-search"></i>
+          <div head-search-input>
+            <input
+              placeholder="リサ"
+              v-model="list.query"
+              @input="searchForData"
+            />
+          </div>
+          <a
+            head-menu-icon
+            class="fas fa-caret-square-up"
+            href="#"
+            v-if="menu.opened"
+            @click="menu.opened=false"
+          ></a>
+          <a
+            head-menu-icon
+            class="fas fa-paint-brush"
+            href="#"
+            v-else
+            @click.prevent="menu.opened=true"
+          ></a>
         </div>
-        <div class="close-view" v-if="modal">
-            <a class="close-background" href="#" @click="modal=null"></a>
-            <div class="close-content skin-view">
-                <div class="view-scroller">
-                    <a href="#" class="view-close-btn" @click="closeSkinCard()"></a>
-                    <div class="nr skin card shadow-sm" style="user-select:text;">
-                        <screenshots :skin="modal" @video-click="video=$event"></screenshots>
-                        <div class="card-body">
-                            <skin-title :skin="modal" @copy-click="copy($event)"></skin-title>
-                            <skin-tags :skin="modal" :card=true></skin-tags>
-                            <div class="btn-group" style="width:100%">
-                                <a :href="'https://aneyo.github.io/risa/s/'+modal.id+'.osk'" class="btn btn-primary" v-if="modal.id" :download="(modal.name||'fancy-skin')+'.osk'" style="flex:1"><i class="fas fa-download"></i> Download</a>
-                                <a target="_blank" :href="'http://aneyo.github.io/risa/s/'+modal.id+'.osk'" class="btn btn-dark" v-if="modal.id"><i class="fas fa-link"></i></a>
-								<a target="_blank" rel="noreferrer" :href="modal.link" class="btn btn-secondary" v-if="modal.link" title="Original post or page"><i class="fas fa-archive"></i></a>
-                            </div>
-                            <skin-video v-if="modal.v" :video="modal.v" class="card-video"></skin-video>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="fixed menu" :class="[menu.opened?'opened':'']">
+        <div menu-content>
+          <a
+            theme-button
+            :class="[scheme]"
+            href="#"
+            @click.prevent="theme(scheme)"
+            v-for="scheme in themes"
+            ><i class="fas fa-check" v-if="menu.theme==scheme"></i
+          ></a>
         </div>
-        <div class="scroll-area">
-            <div id="skins-shower">
-                <div class="nr nothing-found text-light" v-if="skins && !showing.length>0">
-                    <h1>Nothing found</h1>
-                    <span v-if="skins.length > 0">
-                        <h6>To show all skins again just clear the search bar</h6>
-                        <a
-                            @click="search_query=''"
-                            href="#" class="btn btn-primary">Clear search bar</a>
-                    </span>
-                </div>
-                <div class="nr skin card" v-for="skin in showing">
-                    <skin-tags :skin="skin"></skin-tags>
-                    <screenshots :skin="skin" @video-click="video=$event"></screenshots>
-                    <div class="nr skin card-body">
-                        <skin-title :skin="skin" @title-click="modal=$event" @copy-click="copy($event)"></skin-title>
-                        <div class="btn-group">
-                            <a :href="'./s/'+skin.id+'.osk'" class="btn btn-primary" v-if="skin.id" :download="(skin.name||'fancy-skin')+'.osk'"><i class="fas fa-download"></i> Download</a>
-                            <a target="_blank" :href="'http://aneyo.github.io/risa/s/'+skin.id+'.osk'" class="btn btn-dark" v-if="skin.id"><i class="fas fa-link"></i></a>
-                        </div>
-                        <a target="_blank" rel="noreferrer" :href="skin.link" class="btn btn-outline-secondary" v-if="skin.link" title="Original post or page"><i class="fas fa-archive"></i></a>
-                        <button title="Show video preview from YouTube" class="btn btn-outline-danger yt-btn" v-if="skin.v" @click="video=skin.v"><i class="fab fa-youtube"></i></button>
-                    </div>
-                </div>
-                <nav class="nr pages-line" v-if="found.length>6">
-                    <ul class="nr pagination justify-content-center">
-                        <li :class="{'page-item':true, disabled: !(page>0)}">
-                            <a class="page-link" href="#" @click="page--">Previous</a>
-                        </li>
-                        <li :class="{'page-item':true, disabled: (page+1)*max >= found.length}">
-                            <a class="page-link" href="#" @click="page++">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="bottom text-light">
-                <span>Created with <i class="fas fa-heart" alt="love"></i> by <b>aneyo</b> - <a href="https://github.com/aneyo/risa" target="_blank" rel="noreferrer">GitHub Page</a> - <a href="https://twitter.com/aneyoof" target="_blank" rel="noreferrer">Twitter</a> - <a href="http://bandori.wikia.com/wiki/Imai_Lisa" target="_blank" rel="noopener">Who is the <b>Imai Lisa?</b></a></span>
-            </div>
+      </div>
+      <div class="fixed footer">
+        <div>
+          <i class="fas fa-info"></i>
+          <span class="footer-status" v-if="list.show">
+            <span>Found {{ list.show.length }} skins</span>
+            <span v-if="window.width > 400"
+              >, click on the skin title to see more</span
+            >
+          </span>
+          <span class="footer-status" v-else></span>
+          <a href="https://github.com/aneyo/risa"
+            ><i class="fab fa-github"></i
+          ></a>
         </div>
+      </div>
+      <div class="error-message" v-if="list.errors">
+        <span>{{ list.error }}</span>
+      </div>
+      <skin
+        :class="{ show: result.id === list.selected }"
+        :data="result"
+        :key="result.id"
+        :index="index"
+        :selected="result.id === list.selected"
+        @select="selectSkin"
+        v-for="(result, index) in list.show"
+      ></skin>
     </div>
-    <script src="https://risa.aneyo.live/assets/js/vue.components.min.js"></script>
-    <script src="https://risa.aneyo.live/assets/js/risa.min.js"></script>
-</body>
+    <noscript><span>Javascript is required.</span></noscript>
+    <script src="./assets/js/risachi.min.js"></script>
+    <link href="./assets/css/risachi.themes.css" rel="stylesheet" />
+  </body>
 </html>
