@@ -1,8 +1,8 @@
 ## ![Lisa's signature](https://rawcdn.githack.com/aneyo/risa/ba0fad20378bc1a01cc6957782ac768a55d23b69/risa_sign.svg)
 
 [![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/aneyo/risa/blob/master/LICENSE)
-[![Website is *always* up, thanks shields.io <3](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
-[![CodeBeat](https://codebeat.co/badges/2afc5409-17eb-4a02-83a2-df442f92baf2)](https://codebeat.co/projects/github-com-aneyo-risa-master)
+[![Website is *always* up, thanks shields.io <3 tho their badges does not](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
+[![codebeat](https://codebeat.co/badges/e47f21a1-40ed-4bc8-aa74-1dac7984ceef)](https://codebeat.co/projects/github-com-aneyo-risa-master)
 [![Skin collection count](https://img.shields.io/badge/dynamic/json.svg?label=skins%20count&query=%24.skins.length&url=https%3A%2F%2Fraw.githubusercontent.com%2Faneyo%2Frisa%2Fmaster%2Fmeta.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
 [![Twitch](https://img.shields.io/badge/-%2Faneyuu-%236441A4.svg?style=flat&logo=twitch)](https://twitch.tv/aneyuu)
 [![Twitter](https://img.shields.io/twitter/follow/aneyoof.svg?style=social)](https://twitter.com/aneyoof)
@@ -43,4 +43,4 @@ Don't ever host libs at your site's repo
 
 ![oh no](https://i.imgur.com/vAQpvfF.png)
 
-> ~~most of issues came from vue.js package so I should remove it lol~~ done, use CDN services for that
+> ~~most of issues came from vue.js package so I should remove it lol~~ done, use CDN services for that or you can just add these files to [`.codebeatignore`](https://github.com/aneyo/risa/blob/master/.codebeatignore)
