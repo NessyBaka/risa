@@ -1,4 +1,5 @@
 # Risa Project
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 Risa - is a small project writen by aneyo.
 
@@ -25,3 +26,7 @@ more to come, I think...
 - [Bootstrap](https://getbootstrap.com/) - styles (although, I still used some of my stylesheets)
 - [Font Awesome](https://fontawesome.com/) - icons, these guys are *awesome*! :^)
 - [Node.js](https://nodejs.org/) - (TODO) skin parser, used to add skins into [`meta.json`](https://github.com/aneyo/risa/blob/master/meta.json)
+
+also
+![oh no](https://i.imgur.com/vAQpvfF.png)
+> most of issues came from vue.js package so I should remove it lol
