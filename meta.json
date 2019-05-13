@@ -1,6 +1,30 @@
 {
   "skins": [
     {
+      "hidden": true,
+      "name": "Ayachu",
+      "index": "fixed maruyama aya skin but not for site",
+      "download": "todo:add link"
+    },
+    {
+      "id": "uiyrW",
+      "name": "Maruyama Aya",
+      "index": "aneyo's waifu 丸山彩",
+      "link": "https://osu.ppy.sh/community/forums/topics/906743",
+      "author": "Shizuku-",
+      "alink": "https://osu.ppy.sh/users/1125647",
+      "img": [
+        "https://i.imgur.com/a6Tkw5M.png",
+        "https://i.imgur.com/a5LPKRg.png",
+        "https://i.imgur.com/JT3Kw0d.png",
+        "https://i.imgur.com/ozCzTiy.png"
+      ],
+      "thumbnail": "https://i.imgur.com/a6Tkw5Mt.png",
+      "album": "https://imgur.com/a/uJxhlQ9",
+      "v": "https://youtu.be/7a9GmJ0dEMM",
+      "approve": true
+    },
+    {
       "id": "F1Alf",
       "name": "Maki",
       "index": "Nishikino maki",
@@ -225,20 +249,5 @@
       ],
       "thumbnail": "https://i.imgur.com/Acclaott.png"
     }
-  ],
-  "index": [
-    "Checknock KoFFeGold",
-    "Beatmania IIDX 22 Pendual Future Garin",
-    "DA BEST SKIN EVBR SAM & Menani",
-    "SSHD Jax0N",
-    "Bread Goddess aneyo",
-    "Sailor Saturn aparine",
-    "Burning Crow V2 _Easy_",
-    "VA-11 Hall-A IceTeaCitron",
-    "Windswept Puzzle",
-    "o7 - Yousoro -Derek",
-    "Yohane - The Fallen Angel -Derek",
-    "Honkers - Kousaka Honoka -Derek",
-    "Ganbaruby - Kurosawa Ruby -Derek"
   ]
 }

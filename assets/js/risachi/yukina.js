@@ -78,9 +78,12 @@ new Vue({
         });
     },
     processData(data) {
-      this.list.data = data.skins;
+      this.list.data = data.skins.filter(this.skinFilter);
       this.list.show = this.list.data;
       this.list.fuse.base = new Fuse(this.list.data, this.list.fuse.options);
+    },
+    skinFilter(skin) {
+      return skin.id || !skin.hidden; // Filter for hidden skins
     },
     searchForData() {
       if (this.list.query)

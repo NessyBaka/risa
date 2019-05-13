@@ -45,7 +45,7 @@ Vue.component("skin-item", {
     ></preview-widget>
     <div class="info-block">
       <div class="meta">
-        <a class="meta-name" :href="'#'+data.id" @click.prevent="select">{{data.name}}</a>
+        <a class="meta-name" :href="'#'+data.id" @click.prevent="select">{{data.name}} <approved v-if="data.approve"></approved></a>
         <div class="meta-tags">
           <span class="nsfw tag" v-if="data.nsfw"></span>
           <span :class="[data.mod?'modded':'original','tag']"></span>
@@ -146,4 +146,16 @@ Vue.component("lazy", {
     <i v-if="loading && src" class="loader fas fa-spinner"></i>
     <img v-if="src" :src="src" :style="isLoading" @load="loading = false"></img>
   </div>`
+});
+
+Vue.component("approved", {
+  functional: true,
+  render: (el, _) =>
+    el("i", {
+      class: "fas fa-medal",
+      attrs: {
+        title: "Approved by aneyo, idk if you should trust him"
+      },
+      style: "color: gold"
+    })
 });
