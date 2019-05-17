@@ -19,7 +19,7 @@ Vue.component("skin-item", {
       );
     },
     download_name() {
-      return (this.data.id || "skin.risa") + ".osk";
+      return (this.data.name || this.data.id || "skin") + ".osk";
     }
   },
   mounted() {
@@ -65,7 +65,7 @@ Vue.component("skin-item", {
       </div>
     </div>
     <div class="download-button">
-      <a :href="download_link" :download="download_name">
+      <a :href="download_link" :download="download_name" target="_blank">
         <i class="fas fa-download"></i>
       </a>
     </div>
