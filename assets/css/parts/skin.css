@@ -41,3 +41,40 @@
 .show.skin > .download-button > [download]:focus {
   background-color: var(--mid);
 }
+
+/* Compact */
+@media (max-width: 800px) {
+  .skin > .download-button {
+    display: none;
+  }
+
+  .skin > .download-button {
+    display: none;
+  }
+
+  .skin.show {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .skin.show > .preview {
+    width: 100% !important;
+    height: 240px;
+  }
+
+  .skin.show > .download-button {
+    display: flex;
+  }
+
+  .skin.show > .download-button > [download] {
+    flex: 1;
+    margin: 0;
+    border-radius: 0;
+    font-size: 1rem;
+  }
+
+  .skin.show > .download-button > [download]::after {
+    content: "Download";
+    margin-left: 5px;
+  }
+}

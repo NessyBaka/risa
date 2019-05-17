@@ -32,7 +32,7 @@
     integrity="sha384-sri+NftO+0hcisDKgr287Y/1LVnInHJ1l+XC7+FOabmTTIK0HnE2ID+xxvJ21c5J"
     crossorigin="anonymous"
   />
-  <div :class="{ compact }" :style="{ display: 'block' }">
+  <div :style="{ display: 'block' }">
     <div class="fixed header">
       <div>
         <i class="head-search-icon fas fa-search"></i>
@@ -47,7 +47,7 @@
           href="#"
           class="head-menu-icon fas"
           :class="iconMenuSwitcher"
-          @click="menu.opened=!menu.opened"
+          @click.prevent="menu.opened=!menu.opened"
         ></a>
       </div>
     </div>
@@ -69,9 +69,6 @@
         <i class="fas fa-info"></i>
         <span v-if="list.show" key="footer-status-normal" class="footer-status">
           <span>Found {{ list.show.length }} skins</span>
-          <span v-if="window.width > 400"
-            >, click on the skin title to see more</span
-          >
         </span>
         <span v-else key="footer-status-none" class="footer-status"></span>
         <a href="https://github.com/aneyo/risa" target="_blank" rel="noreferrer"

@@ -36,9 +36,6 @@ new Vue({
     themes: ["milk-light", "cute-brown", "deep-dark"]
   },
   computed: {
-    compact() {
-      return this.window.width <= 700;
-    },
     iconMenuSwitcher() {
       return [this.menu.opened ? "fa-caret-square-up" : "fa-paint-brush"];
     }
@@ -50,22 +47,12 @@ new Vue({
       document.location.hash.length
     );
     this.fetchData(DATA_URL);
-    window.addEventListener("resize", this.$_onResize);
-    this.$_onResize();
   },
   mounted() {
     this.theme();
   },
-  destroyed() {
-    window.removeEventListener("resize", this.$_onResize);
-  },
   /* Non-Reactive Properties */
   methods: {
-    $_onResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
-    },
-
     fetchData(source) {
       fetch(source)
         .then(result => {
