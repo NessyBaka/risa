@@ -1,23 +1,10 @@
-# Languages - TODO thing
-/languages
-# Images with lisa <3
-/i/risa-*
-# Backups lol
-/backups
 # MacOS thingy
 .DS_Store
-# VSCode settings
-/.vscode
-# Temp files
-/.temp
-# Old files and node scripts
-/assets/js/_old
-/assets/css/_old
-/assets/css/.node
-# remove it!
-/i
-/assets/pwa-icons
-/assets/vue
-/meta.test.json
-index.*.html
-index.*.*.html
+# VSCode user-settings
+.vscode
+# Old files, temps and node scripts
+.temp
+.old
+.node
+# remove useless for prod pages
+index*.html
