@@ -1,9 +1,26 @@
 {
   "skins": [
     {
+      "id": "wEiUd",
+      "name": "★ Soda ★",
+      "index": "old soda longass cursortrail nya cat girl",
+      "author": "Soda",
+      "alink": "https://osu.ppy.sh/users/3574962",
+      "link": "https://osu.ppy.sh/community/forums/topics/220809",
+      "img": [
+        "https://i.imgur.com/KTt0FFC.png",
+        "https://i.imgur.com/aWOnhbz.png",
+        "https://i.imgur.com/sixI8Mn.png",
+        "https://i.imgur.com/PrfVvQd.png",
+        "https://i.imgur.com/r6Dr9jA.png"
+      ],
+      "thumbnail": "https://i.imgur.com/KTt0FFCt.png",
+      "album": "https://imgur.com/a/pY6nnun"
+    },
+    {
       "hidden": true,
-      "name": "Ayachu",
-      "index": "fixed maruyama aya skin but not for site shuwa",
+      "name": "Shuwa",
+      "index": "fixed maruyama aya skin but not for site shuwa ayachu",
       "download": "https://drive.google.com/uc?id=1KZv57LLEyw2TudXuuiIrVupOk83Ja5dw&export=download"
     },
     {
@@ -82,7 +99,7 @@
       ],
       "album": "https://imgur.com/a/TmsyuRp",
       "thumbnail": "https://i.imgur.com/h44O1wGt.jpg",
-      "v": "https://www.youtube.com/watch?v=NQs3ckAX6H8"
+      "v": "https://youtu.be/NQs3ckAX6H8"
     },
     {
       "id": "jvj47",
@@ -125,7 +142,7 @@
       "nsfw": false,
       "mod": false,
       "img": [],
-      "v": "https://www.youtube.com/watch?v=labGdwAgdbU"
+      "v": "https://youtu.be/labGdwAgdbU"
     },
     {
       "id": "q2YUP",
@@ -135,7 +152,7 @@
       "nsfw": false,
       "mod": true,
       "img": [],
-      "v": "https://www.youtube.com/watch?v=SlGw9gifhfI"
+      "v": "https://youtu.be/SlGw9gifhfI"
     },
     {
       "id": "Janhs",
@@ -146,7 +163,7 @@
       "mod": true,
       "alink": "http://twitch.tv/aneyoof",
       "img": [],
-      "v": "https://www.youtube.com/watch?v=hLkJ9CmzZbo",
+      "v": "https://youtu.be/hLkJ9CmzZbo",
       "nsfw": false
     },
     {
@@ -170,7 +187,7 @@
         "https://i.imgur.com/bOgUKNa.jpg",
         "https://i.imgur.com/Ft1r12o.jpg"
       ],
-      "v": "https://www.youtube.com/watch?v=2Bw1y21gqU4",
+      "v": "https://youtu.be/2Bw1y21gqU4",
       "thumbnail": "https://i.imgur.com/bOgUKNat.jpg",
       "nsfw": false
     },
@@ -249,5 +266,6 @@
       ],
       "thumbnail": "https://i.imgur.com/Acclaott.png"
     }
-  ]
+  ],
+  "upd": 1565482649636
 }
