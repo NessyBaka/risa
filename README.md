@@ -3,7 +3,7 @@
 [![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/aneyo/risa/blob/master/LICENSE)
 [![Website is *always* up, thanks shields.io <3 tho their badges does not](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
 [![codebeat](https://codebeat.co/badges/e47f21a1-40ed-4bc8-aa74-1dac7984ceef)](https://codebeat.co/projects/github-com-aneyo-risa-master)
-[![Skin collection count](https://img.shields.io/badge/dynamic/json.svg?label=skins%20count&query=%24.skins.length&url=https%3A%2F%2Fraw.githubusercontent.com%2Faneyo%2Frisa%2Fmaster%2Fmeta.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
+[![Skin collection count](https://img.shields.io/badge/dynamic/json?label=skins%20count&query=listing.length&url=https%3A%2F%2Fgist.githubusercontent.com%2Faneyo%2Fc92396022314311bd7fe6556b01fb630%2Fraw%2Fdata.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
 [![Twitch](https://img.shields.io/badge/-%2Faneyuu-%236441A4.svg?style=flat&logo=twitch)](https://twitch.tv/aneyuu)
 [![Twitter](https://img.shields.io/twitter/follow/aneyoof.svg?style=social)](https://twitter.com/aneyoof)
 
