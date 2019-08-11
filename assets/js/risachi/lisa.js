@@ -12,14 +12,34 @@ Vue.component("skin-item", {
     index: Number
   },
   computed: {
-    download_link() {
-      return (
-        this.data.download ||
-        "https://aneyo.github.io/risa/s/" + this.data.id + ".osk"
-      );
+    name() {
+      if (this.data.names != null && this.data.names.length > 0) return this.data.names[0];
+      else return "(Unknown Skin Name)";
     },
-    download_name() {
-      return (this.data.name || this.data.id || "skin") + ".osk";
+    flags() {
+      if (this.data.flags == null) return {};
+      else return this.data.flags;
+    },
+    author() {
+      if (this.data.author == null) return {};
+      else return this.data.author;
+    },
+    links() {
+      if (this.data.links == null) return {};
+      else return this.data.links;
+    },
+    preview() {
+      if (this.data.preview == null) return {};
+      else return this.data.preview;
+    },
+
+    fileLink() {
+      if (this.data.links != null && this.data.links.download != null) return this.data.links.download;
+      else return `${document.location.origin}/download/${this.data.id}.osk`;
+    },
+    fileName() {
+      if (this.data.names != null && this.data.names.length > 0) return `${this.data.names[0]}.osk`
+      else return `${this.data.id || "a_skin"}.osk`;
     }
   },
   mounted() {
@@ -35,48 +55,44 @@ Vue.component("skin-item", {
   },
   template: `
   <div class="skin">
-    <preview-widget
-      :thumbnail="data.thumbnail"
-      :album="data.img"
-      :video="data.v"
-      :large="selected"
-      :nsfw="data.nsfw"
+    <preview-component
       :id="data.id"
-    ></preview-widget>
+      :data="preview"
+      :nsfw="flags.nsfw"
+      :large="selected"
+    ></preview-component>
     <div class="info-block">
       <div class="meta">
-        <a class="meta-name" :href="'#'+data.id" @click.prevent="select">{{data.name}} <approved v-if="data.approve"></approved></a>
+        <a class="meta-name" :href="'#'+data.id" @click.prevent="select">{{name}} <approved v-if="data.gold"></approved></a>
         <div class="meta-tags">
-          <span class="nsfw tag" v-if="data.nsfw"></span>
-          <span :class="[data.mod?'modded':'original','tag']"></span>
+          <span class="nsfw tag" v-if="flags.nsfw"></span>
+          <span :class="[flags.modded?'modded':'original','tag']"></span>
         </div>
         <div class="meta-author">
           by
-          <a class="author-link" target="_blank" rel="noreferrer" :href="data.alink" >{{data.author}}</a>
+          <a class="author-link" target="_blank" rel="noreferrer" :href="author.link" >{{author.name}}</a>
         </div>
       </div>
       <div class="other">
-        <a class="source-button" target="_blank" rel="noreferrer" :href="data.link" v-if="data.link">
+        <a class="source-button" target="_blank" rel="noreferrer" :href="links.origin" v-if="links.origin">
           <i class="fas fa-book"></i>
         </a>
-        <a class="video-button" target="_blank" rel="noreferrer" :href="data.v" v-if="data.v">
+        <a class="video-button" target="_blank" rel="noreferrer" :href="preview.video" v-if="preview.video">
           <i class="fab fa-youtube"></i>
         </a>
       </div>
     </div>
     <div class="download-button">
-      <a :href="download_link" :download="download_name" target="_blank">
+      <a :href="fileLink" :download="fileName" target="_blank">
         <i class="fas fa-download"></i>
       </a>
     </div>
   </div>`
 });
 
-Vue.component("preview-widget", {
+Vue.component("preview-component", {
   props: {
-    thumbnail: String,
-    album: Array,
-    video: String,
+    data: Object,
 
     skinId: {
       type: String,
@@ -94,8 +110,29 @@ Vue.component("preview-widget", {
     }
   },
   computed: {
+    hasData() {
+      return this.data != null;
+    },
     hasImages() {
-      return this.album && this.album.length > 0;
+      return this.hasData && this.data.big != null && this.data.big.length > 0;
+    },
+    hasThumb() {
+      return this.hasData && (this.data.small != null || this.data.video != null);
+    },
+    thumbnail() {
+      if (this.data.small != null) return this.data.small;
+      else if (this.data.video != null) return this.videoThumbnail;
+      else return null;
+    },
+    videoThumbnail() {
+      if (!this.hasData || this.data.video == null) return null;
+
+      let videoURL = new URL(this.data.video),
+        id = videoURL.searchParams.get("v");
+
+      if (id == null) id = videoURL.pathname.slice(1, videoURL.pathname.length);
+
+      return `https://img.youtube.com/vi/${id}/mqdefault.jpg`
     }
   },
   methods: {
@@ -118,9 +155,9 @@ Vue.component("preview-widget", {
     </div>
 
     <div v-if="large && hasImages" ref="album" key="large-preview" class="lazy-album">
-      <lazy v-for="image in album" :key="image" class="album-image" :src="image"></lazy>
+      <lazy v-for="(screenshot, index) in data.big" :key="index" class="album-image" :src="screenshot"></lazy>
     </div>
-    <lazy v-else-if="thumbnail" key="small-preview" class="lazy-preview" :src="thumbnail"></lazy>
+    <lazy v-else-if="hasThumb" key="small-preview" class="lazy-preview" :src="thumbnail"></lazy>
   </div>`
 });
 
@@ -154,7 +191,7 @@ Vue.component("approved", {
     el("i", {
       class: "fas fa-medal",
       attrs: {
-        title: "Approved by aneyo, idk if you should trust him"
+        title: "\"A Gold award I guess? aneyo likes this skin, cool shit\""
       },
       style: "color: gold"
     })

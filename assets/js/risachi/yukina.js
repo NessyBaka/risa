@@ -1,5 +1,5 @@
 /*eslint no-undef: 0*/
-const DATA_URL = "./meta.json";
+const DATA_URL = "https://gist.githubusercontent.com/aneyo/c92396022314311bd7fe6556b01fb630/raw/data.json"; // New data file scheme
 
 new Vue({
   el: "body > div:first-child",
@@ -10,8 +10,9 @@ new Vue({
       height: 0
     },
 
-    list: {
-      data: null,
+    listing: {
+      data: null, // Skin list
+      updated: null, // Last time list was updated
       show: null,
       query: null,
       error: null,
@@ -21,9 +22,9 @@ new Vue({
           shouldSort: true,
           threshold: 0.3,
           keys: [
-            { name: "name", weight: 0.5 },
-            { name: "author", weight: 0.3 },
-            { name: "index", weight: 0.2 }
+            { name: "names", weight: 0.5 },
+            { name: "author.name", weight: 0.3 },
+            { name: "tags", weight: 0.2 }
           ]
         }
       },
@@ -42,7 +43,7 @@ new Vue({
   },
   /* Events */
   created() {
-    this.list.selected = document.location.hash.slice(
+    this.listing.selected = document.location.hash.slice(
       1,
       document.location.hash.length
     );
@@ -61,27 +62,28 @@ new Vue({
         })
         .then(this.processData)
         .catch(error => {
-          this.list.error = error;
+          this.listing.error = error;
         });
     },
     processData(data) {
-      this.list.data = data.skins.filter(this.skinFilter);
-      this.list.show = this.list.data;
-      this.list.fuse.base = new Fuse(this.list.data, this.list.fuse.options);
+      this.listing.updated = new Date(data.updated);
+      this.listing.data = data.listing.filter(this.skinFilter);
+      this.listing.show = this.listing.data;
+      this.listing.fuse.base = new Fuse(this.listing.data, this.listing.fuse.options);
     },
     skinFilter(skin) {
-      return skin.id || !skin.hidden; // Filter for hidden skins
+      return skin.id || !skin.hide; // Filter for hidden skins
     },
     searchForData() {
-      if (this.list.query)
-        this.list.show = this.list.fuse.base.search(this.list.query);
-      else this.list.show = this.list.data;
+      if (this.listing.query)
+        this.listing.show = this.listing.fuse.base.search(this.listing.query);
+      else this.listing.show = this.listing.data;
     },
     selectSkin(ID) {
       if (!ID) return;
 
-      if (ID === this.list.selected) this.list.selected = null;
-      else this.list.selected = ID;
+      if (ID === this.listing.selected) this.listing.selected = null;
+      else this.listing.selected = ID;
     },
     theme(theme_name) {
       if (!theme_name) theme_name = this.$cookies.get("theme");
