@@ -67,3 +67,6 @@
 .info-block > .other > .video-button::after {
   content: "Video Preview";
 }
+.info-block > .other > .copy-button::after {
+  content: "Copy Link";
+}

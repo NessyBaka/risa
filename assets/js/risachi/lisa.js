@@ -12,6 +12,9 @@ Vue.component("skin-item", {
     index: Number
   },
   computed: {
+    link() {
+      return `${document.location.origin}/#${this.data.id}`;
+    },
     name() {
       if (this.data.names != null && this.data.names.length > 0) return this.data.names[0];
       else return "(Unknown Skin Name)";
@@ -40,17 +43,32 @@ Vue.component("skin-item", {
     fileName() {
       if (this.data.names != null && this.data.names.length > 0) return `${this.data.names[0]}.osk`
       else return `${this.data.id || "a_skin"}.osk`;
+    },
+    copyID() {
+      return `copy-${this.data.id}`;
     }
   },
   mounted() {
-    if (this.selected) this.$nextTick(() => setTimeout(this.scrollTo, 100));
+    if (this.selected) this.$nextTick(() => setTimeout(this.scrollTo, 250));
   },
   methods: {
     scrollTo() {
-      this.$el.ownerDocument.documentElement.scrollTop = this.index * 81;
+      this.$el.ownerDocument.documentElement.scrollTop = (this.index * 81);
     },
     select() {
       this.$emit("select", this.data.id);
+    },
+    copy() {
+      let c = document.querySelector(`#${this.copyID}`)
+      c.setAttribute('type', 'text')
+      c.select()
+
+      try {
+        document.execCommand('copy');
+      } catch (e) { console.error(e) }
+
+      c.setAttribute('type', 'hidden')
+      window.getSelection().removeAllRanges()
     }
   },
   template: `
@@ -63,7 +81,7 @@ Vue.component("skin-item", {
     ></preview-component>
     <div class="info-block">
       <div class="meta">
-        <a class="meta-name" :href="'#'+data.id" @click.prevent="select">{{name}} <approved v-if="data.gold"></approved></a>
+        <a class="meta-name" :href="link" @click.prevent="select">{{name}} <approved v-if="data.gold"></approved></a>
         <div class="meta-tags">
           <span class="nsfw tag" v-if="flags.nsfw"></span>
           <span :class="[flags.modded?'modded':'original','tag']"></span>
@@ -74,12 +92,16 @@ Vue.component("skin-item", {
         </div>
       </div>
       <div class="other">
+        <a class="copy-button" :href="link" @click.prevent="copy">
+          <i class="fas fa-clipboard"></i>
+        </a>
         <a class="source-button" target="_blank" rel="noreferrer" :href="links.origin" v-if="links.origin">
           <i class="fas fa-book"></i>
         </a>
         <a class="video-button" target="_blank" rel="noreferrer" :href="preview.video" v-if="preview.video">
           <i class="fab fa-youtube"></i>
         </a>
+        <input type="hidden" :id="copyID" :value="link">
       </div>
     </div>
     <div class="download-button">
@@ -189,7 +211,7 @@ Vue.component("approved", {
   functional: true,
   render: (el, _) =>
     el("i", {
-      class: "fas fa-medal",
+      class: "fas fa-star",
       attrs: {
         title: "\"A Gold award I guess? aneyo likes this skin, cool shit\""
       },
