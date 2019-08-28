@@ -32,13 +32,17 @@ new Vue({
     },
     menu: {
       opened: false,
-      theme: null
+      theme: null,
+      birthday: {
+        menu: false,
+        first: true
+      }
     },
     themes: ["milk-light", "cute-brown", "deep-dark"]
   },
   computed: {
     iconMenuSwitcher() {
-      return [this.menu.opened ? "fa-caret-square-up" : "fa-paint-brush"];
+      return [this.menu.opened ? "fa-window-close" : "fa-birthday-cake", this.menu.birthday.first ? "w" : ""];
     }
   },
   /* Events */
@@ -50,6 +54,7 @@ new Vue({
     this.fetchData(DATA_URL);
   },
   mounted() {
+    this.menu.birthday.first = !(this.$cookies.get("birthday") === "true")
     this.theme();
   },
   /* Non-Reactive Properties */
@@ -90,6 +95,12 @@ new Vue({
       if (this.$cookies.get("theme") !== theme_name)
         this.$cookies.set("theme", theme_name);
       this.$el.ownerDocument.documentElement.className = this.menu.theme = theme_name;
+    },
+    openMenu() {
+      this.menu.opened = !this.menu.opened
+      /* --- */
+      this.menu.birthday.first = false;
+      this.$cookies.set("birthday", "true");
     }
   }
 });
