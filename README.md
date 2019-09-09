@@ -1,4 +1,4 @@
-## ![Lisa's signature](https://rawcdn.githack.com/aneyo/risa/ba0fad20378bc1a01cc6957782ac768a55d23b69/risa_sign.svg)
+## <img src="risa_sign.svg" width="200">
 
 [![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/aneyo/risa/blob/master/LICENSE)
 [![Website is *always* up, thanks shields.io <3 tho their badges does not](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
@@ -20,14 +20,14 @@ Also you might ask *why **R**isa instead of **L**isa?*  Well, [there's some phon
 
 ## Things to do
 
+- [ ] Stop hosting skin files at Pages hosting **Important**
 - [x] Dark Theme (cause I know that you don't like light themes)
 - [ ] ~~Multi-language support~~
-- [ ] Finish skin parser *(I should make another repo for this one)*
-- [ ] ~~Skin search filters~~
-- [ ] Stop hosting skin files at Pages hosting
+- [x] Finish skin parser ~~*(I should make another repo for this one)*~~ repo soon™
+- [ ] Skin search filters
 - [ ] Finish the rework
 
-Well, there's a *new* version coming soon™
+Working on more complex version rn.
 
 ## What keeps risa working ♥️
 
@@ -35,12 +35,3 @@ Well, there's a *new* version coming soon™
 - [Font Awesome](https://fontawesome.com/) - Font icons, these guys are *awesome*!
 - [Fuse.js](https://fusejs.io/) - *Lightweight [fuzzy-search](https://en.wikipedia.org/wiki/Approximate_string_matching) library*, It's really **that** good
 - [cmp-cc/vue-cookies](https://github.com/cmp-cc/vue-cookies) - Vue plugin to work with cookies 🍪
-- [raw.githack](https://raw.githack.com/) - Where raw svg from github is hosted for [readme file](https://github.com/aneyo/risa/blob/master/README.md) ♥
-
-## Also
-
-Don't ever host libs at your site's repo
-
-![oh no](https://i.imgur.com/vAQpvfF.png)
-
-> ~~most of issues came from vue.js package so I should remove it lol~~ done, use CDN services for that or you can just add these files to [`.codebeatignore`](https://github.com/aneyo/risa/blob/master/.codebeatignore)
