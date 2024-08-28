@@ -3,20 +3,21 @@ Vue.component("skin-item", {
   props: {
     data: {
       type: Object,
-      required: true
+      required: true,
     },
     selected: {
       type: Boolean,
-      required: true
+      required: true,
     },
-    index: Number
+    index: Number,
   },
   computed: {
     link() {
       return `${document.location.origin}/#${this.data.id}`;
     },
     name() {
-      if (this.data.names != null && this.data.names.length > 0) return this.data.names[0];
+      if (this.data.names != null && this.data.names.length > 0)
+        return this.data.names[0];
       else return "(Unknown Skin Name)";
     },
     flags() {
@@ -37,39 +38,43 @@ Vue.component("skin-item", {
     },
 
     fileLink() {
-      if (this.data.links != null && this.data.links.download != null) return this.data.links.download;
-      else return `${document.location.origin}/download/${this.data.id}.osk`;
+      if (this.data.links != null && this.data.links.download != null)
+        return this.data.links.download;
+      else return `https://aneyo.github.io/risa-dl/${this.data.id}.osk`;
     },
     fileName() {
-      if (this.data.names != null && this.data.names.length > 0) return `${this.data.names[0]}.osk`
+      if (this.data.names != null && this.data.names.length > 0)
+        return `${this.data.names[0]}.osk`;
       else return `${this.data.id || "a_skin"}.osk`;
     },
     copyID() {
       return `copy-${this.data.id}`;
-    }
+    },
   },
   mounted() {
     if (this.selected) this.$nextTick(() => setTimeout(this.scrollTo, 250));
   },
   methods: {
     scrollTo() {
-      this.$el.ownerDocument.documentElement.scrollTop = (this.index * 81);
+      this.$el.ownerDocument.documentElement.scrollTop = this.index * 81;
     },
     select() {
       this.$emit("select", this.data.id);
     },
     copy() {
-      let c = document.querySelector(`#${this.copyID}`)
-      c.setAttribute('type', 'text')
-      c.select()
+      let c = document.querySelector(`#${this.copyID}`);
+      c.setAttribute("type", "text");
+      c.select();
 
       try {
-        document.execCommand('copy');
-      } catch (e) { console.error(e) }
+        document.execCommand("copy");
+      } catch (e) {
+        console.error(e);
+      }
 
-      c.setAttribute('type', 'hidden')
-      window.getSelection().removeAllRanges()
-    }
+      c.setAttribute("type", "hidden");
+      window.getSelection().removeAllRanges();
+    },
   },
   template: `
   <div class="skin">
@@ -81,7 +86,7 @@ Vue.component("skin-item", {
     ></preview-component>
     <div class="info-block">
       <div class="meta">
-        <a class="meta-name" :href="link" @click.prevent="select">{{name}} <approved v-if="data.gold"></approved></a>
+        <a class="meta-name" :href="link" @click.prevent="select">{{name}}</a>
         <div class="meta-tags">
           <span class="nsfw tag" v-if="flags.nsfw"></span>
           <span :class="[flags.modded?'modded':'original','tag']"></span>
@@ -109,7 +114,7 @@ Vue.component("skin-item", {
         <i class="fas fa-download"></i>
       </a>
     </div>
-  </div>`
+  </div>`,
 });
 
 Vue.component("preview-component", {
@@ -118,18 +123,18 @@ Vue.component("preview-component", {
 
     skinId: {
       type: String,
-      required: false
+      required: false,
     },
     large: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     nsfw: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     hasData() {
@@ -139,7 +144,9 @@ Vue.component("preview-component", {
       return this.hasData && this.data.big != null && this.data.big.length > 0;
     },
     hasThumb() {
-      return this.hasData && (this.data.small != null || this.data.video != null);
+      return (
+        this.hasData && (this.data.small != null || this.data.video != null)
+      );
     },
     thumbnail() {
       if (this.data.small != null) return this.data.small;
@@ -154,8 +161,8 @@ Vue.component("preview-component", {
 
       if (id == null) id = videoURL.pathname.slice(1, videoURL.pathname.length);
 
-      return `https://img.youtube.com/vi/${id}/mqdefault.jpg`
-    }
+      return `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+    },
   },
   methods: {
     swipe(index) {
@@ -163,7 +170,7 @@ Vue.component("preview-component", {
         this.$refs["album"].scrollLeft + this.$el.offsetWidth * index,
         0
       );
-    }
+    },
   },
   template: `
   <div class="preview" :class="{nsfw}">
@@ -180,41 +187,29 @@ Vue.component("preview-component", {
       <lazy v-for="(screenshot, index) in data.big" :key="index" class="album-image" :src="screenshot"></lazy>
     </div>
     <lazy v-else-if="hasThumb" key="small-preview" class="lazy-preview" :src="thumbnail"></lazy>
-  </div>`
+  </div>`,
 });
 
 Vue.component("lazy", {
   props: {
     src: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      loading: true
+      loading: true,
     };
   },
   computed: {
     isLoading() {
       return { display: this.loading ? "none" : null };
-    }
+    },
   },
   template: `
   <div :class="{ loading }">
     <i v-if="loading && src" class="loader fas fa-spinner"></i>
     <img v-if="src" :src="src" :style="isLoading" @load="loading = false"></img>
-  </div>`
-});
-
-Vue.component("approved", {
-  functional: true,
-  render: (el, _) =>
-    el("i", {
-      class: "fas fa-star",
-      attrs: {
-        title: "\"A Gold award I guess? aneyo likes this skin, cool shit\""
-      },
-      style: "color: gold"
-    })
+  </div>`,
 });

@@ -1,5 +1,6 @@
 /*eslint no-undef: 0*/
-const DATA_URL = "https://gist.githubusercontent.com/aneyo/c92396022314311bd7fe6556b01fb630/raw/data.json"; // New data file scheme
+const DATA_URL =
+  "https://gist.githubusercontent.com/aneyo/c92396022314311bd7fe6556b01fb630/raw/data.json"; // New data file scheme
 
 new Vue({
   el: "body > div:first-child",
@@ -7,7 +8,7 @@ new Vue({
   data: {
     window: {
       width: 0,
-      height: 0
+      height: 0,
     },
 
     listing: {
@@ -24,26 +25,63 @@ new Vue({
           keys: [
             { name: "names", weight: 0.5 },
             { name: "author.name", weight: 0.3 },
-            { name: "tags", weight: 0.2 }
-          ]
-        }
+            { name: "tags", weight: 0.2 },
+          ],
+        },
       },
-      selected: null
+      selected: null,
     },
     menu: {
       opened: false,
       theme: null,
       birthday: {
         menu: false,
-        first: true
-      }
+        first: true,
+      },
     },
-    themes: ["milk-light", "cute-brown", "deep-dark"]
+    themes: ["milk-light", "cute-brown", "deep-dark", "wine-birthday"],
   },
   computed: {
+    isBirthdayToday() {
+      // shouldn't use computed for this but i dont really care
+      const date = new Date();
+      if (date.getMonth() !== 7) return false;
+      const day = date.getDate();
+      return day === 25 || day === 28;
+    },
+    yearsSinceCreation() {
+      return new Date().getFullYear() - 2018;
+    },
+    yearsSinceCreationSuffix() {
+      switch (this.yearsSinceCreation) {
+        case 0:
+          return "(?)";
+        case 1:
+          return "st";
+        case 2:
+          return "nd";
+        case 3:
+          return "rd";
+      }
+      return "th";
+    },
     iconMenuSwitcher() {
-      return [this.menu.opened ? "fa-window-close" : "fa-birthday-cake", this.menu.birthday.first ? "w" : ""];
-    }
+      return [
+        this.menu.opened
+          ? "fa-window-close"
+          : this.isBirthdayToday
+          ? "fa-birthday-cake"
+          : "fa-paint-brush",
+        this.menu.birthday.first ? "w" : "",
+      ];
+    },
+    searchPlaceholderText() {
+      return this.isBirthdayToday
+        ? `Happy ${
+            this.yearsSinceCreation + this.yearsSinceCreationSuffix
+          } birthday!`
+        : "リサ";
+    },
   },
   /* Events */
   created() {
@@ -54,19 +92,19 @@ new Vue({
     this.fetchData(DATA_URL);
   },
   mounted() {
-    this.menu.birthday.first = !(this.$cookies.get("birthday") === "true")
+    this.menu.birthday.first = !(this.$cookies.get("birthday") === "true");
     this.theme();
   },
   /* Non-Reactive Properties */
   methods: {
     fetchData(source) {
       fetch(source)
-        .then(result => {
+        .then((result) => {
           if (result.ok) return result.json();
           else throw new Error(result.statusText);
         })
         .then(this.processData)
-        .catch(error => {
+        .catch((error) => {
           this.listing.error = error;
         });
     },
@@ -74,7 +112,10 @@ new Vue({
       this.listing.updated = new Date(data.updated);
       this.listing.data = data.listing.filter(this.skinFilter);
       this.listing.show = this.listing.data;
-      this.listing.fuse.base = new Fuse(this.listing.data, this.listing.fuse.options);
+      this.listing.fuse.base = new Fuse(
+        this.listing.data,
+        this.listing.fuse.options
+      );
     },
     skinFilter(skin) {
       return skin.id || !skin.hide; // Filter for hidden skins
@@ -94,13 +135,14 @@ new Vue({
       if (!theme_name) theme_name = this.$cookies.get("theme");
       if (this.$cookies.get("theme") !== theme_name)
         this.$cookies.set("theme", theme_name);
-      this.$el.ownerDocument.documentElement.className = this.menu.theme = theme_name;
+      this.$el.ownerDocument.documentElement.className = this.menu.theme =
+        theme_name;
     },
     openMenu() {
-      this.menu.opened = !this.menu.opened
+      this.menu.opened = !this.menu.opened;
       /* --- */
       this.menu.birthday.first = false;
       this.$cookies.set("birthday", "true");
-    }
-  }
+    },
+  },
 });

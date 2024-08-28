@@ -1,71 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" class="deep-dark">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<meta name="Description"
-  content="Risa - a small project created to *host* a small skin collection for a game called osu!" />
-<meta name="theme-color" content="#DD2200" />
-<link rel="manifest" href="https://risa.aneyo.live/manifest.json" />
-<title>Welcome to Risa!</title>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.4/fuse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-cookies@1.5.13/vue-cookies.min.js"></script>
-<link href="./assets/css/risachi.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/solid.css"
-  integrity="sha384-ioUrHig76ITq4aEJ67dHzTvqjsAP/7IzgwE7lgJcg2r7BRNGYSK0LwSmROzYtgzs" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/brands.css"
-  integrity="sha384-i2PyM6FMpVnxjRPi0KW/xIS7hkeSznkllv+Hx/MtYDaHA5VcF0yL3KVlvzp8bWjQ" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/fontawesome.css"
-  integrity="sha384-sri+NftO+0hcisDKgr287Y/1LVnInHJ1l+XC7+FOabmTTIK0HnE2ID+xxvJ21c5J" crossorigin="anonymous" />
-<div :style="{ display: 'block' }">
-  <!--<div class="birthday-message" :class="menu.birthday.menu ?'':'hide'">
-    <h2>Спасибо</h2>
-    <div>Спасибо за то что пользуетесь этим сайтом.</div>
-    <br>
-    <div>Я не особо умею расписывать тексты на день рождения, с подарками тоже самое</div>
-    <div>так что, в честь первого годика этого сайта я оставлю тут <a class="present" href="#"
-        @click.prevent="theme('wine-birthday')">еще одну
-        тему</a></div>
-    <br>
-    <a href="#" @click.prevent="(menu.birthday.menu=!menu.birthday.menu)">Закрыть сообщение</a>
-  </div>-->
-  <div class="fixed header">
-    <div>
-      <i class="head-search-icon fas fa-search"></i>
-      <div class="head-search-input">
-        <input v-model="listing.query" placeholder="2 Years btw" @input="searchForData" />
-      </div>
-      <a href="#" class="head-menu-icon fas" :class="iconMenuSwitcher" @click.prevent="openMenu"></a>
-    </div>
-  </div>
-  <div class="fixed menu" :class="[menu.opened?'opened':'']">
-    <div class="menu-content">
-      <a v-for="scheme in themes" :key="scheme" href="#" class="theme-button" :class="[scheme]"
-        @click.prevent="theme(scheme)"><i class="fas fa-check" v-if="menu.theme==scheme"></i></a>
-      <a key="wine-birthday" href="#" class="theme-button" @click.prevent="theme('wine-birthday')"><i
-          class="fas fa-birthday-cake"></i></a>
-    </div>
-  </div>
-  <div class="fixed footer">
-    <div>
-      <i class="fas fa-info"></i>
-      <span v-if="listing.show" key="footer-status-normal" class="footer-status">
-        <span>Updated: <b>{{listing.updated.toLocaleString()}}</b></span>
-      </span>
-      <span v-else key="footer-status-none" class="footer-status"></span>
-      <a href="https://github.com/aneyo/risa" target="_blank" rel="noreferrer"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
-  <div v-if="listing.errors" class="error-message">
-    <span>{{ listing.error }}</span>
-  </div>
-  <skin-item v-for="(result, index) in listing.show" :key="result.id" :class="{ show: result.id === listing.selected }"
-    :data="result" :index="index" :selected="result.id === listing.selected" @select="selectSkin"></skin-item>
-</div>
-<noscript><span>Javascript is required.</span></noscript>
-<script src="./assets/js/risachi.min.js"></script>
-<link href="./assets/css/risachi.themes.css" rel="stylesheet" />
-<link href="./assets/css/risachi.b.css" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="Description"
+      content="Risa - a small project created to *host* a small skin collection for a game called osu!"
+    />
+    <meta name="theme-color" content="#DD2200" />
+    <link rel="manifest" href="https://risa.aneyo.live/manifest.json" />
+    <title>Welcome to Risa!</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.4/fuse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-cookies@1.5.13/vue-cookies.min.js"></script>
+    <link href="./assets/css/risachi.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/solid.css"
+      integrity="sha384-ioUrHig76ITq4aEJ67dHzTvqjsAP/7IzgwE7lgJcg2r7BRNGYSK0LwSmROzYtgzs"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/brands.css"
+      integrity="sha384-i2PyM6FMpVnxjRPi0KW/xIS7hkeSznkllv+Hx/MtYDaHA5VcF0yL3KVlvzp8bWjQ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/fontawesome.css"
+      integrity="sha384-sri+NftO+0hcisDKgr287Y/1LVnInHJ1l+XC7+FOabmTTIK0HnE2ID+xxvJ21c5J"
+      crossorigin="anonymous"
+    />
 
+    <link href="./assets/css/risachi.themes.css" rel="stylesheet" />
+    <link href="./assets/css/risa.patch.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div :style="{ display: 'block' }">
+      <div class="fixed header">
+        <div>
+          <i class="head-search-icon fas fa-search"></i>
+          <div class="head-search-input">
+            <input
+              v-model="listing.query"
+              :placeholder="searchPlaceholderText"
+              @input="searchForData"
+            />
+          </div>
+          <a
+            href="#"
+            class="head-menu-icon fas"
+            :class="iconMenuSwitcher"
+            @click.prevent="openMenu"
+          ></a>
+        </div>
+      </div>
+      <div class="fixed menu" :class="[menu.opened?'opened':'']">
+        <div class="menu-content">
+          <a
+            v-for="scheme in themes"
+            :key="scheme"
+            href="#"
+            class="theme-button"
+            :class="[scheme,menu.theme==scheme?'selected':'']"
+            @click.prevent="theme(scheme)"
+            ><i class="fas fa-check" v-if="menu.theme==scheme"></i
+          ></a>
+        </div>
+      </div>
+      <div class="fixed footer">
+        <div>
+          <i class="fas fa-info"></i>
+          <span
+            v-if="listing.show"
+            key="footer-status-normal"
+            class="footer-status"
+          >
+            <span
+              >Collection updated @
+              <b>{{listing.updated.toUTCString()}}</b></span
+            >
+          </span>
+          <span v-else key="footer-status-none" class="footer-status"></span>
+          <a
+            href="https://github.com/aneyo/risa"
+            target="_blank"
+            rel="noreferrer"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+      </div>
+      <div v-if="listing.errors" class="error-message">
+        <span>{{ listing.error }}</span>
+      </div>
+      <skin-item
+        v-for="(result, index) in listing.show"
+        :key="result.id"
+        :class="{ show: result.id === listing.selected }"
+        :data="result"
+        :index="index"
+        :selected="result.id === listing.selected"
+        @select="selectSkin"
+      ></skin-item>
+    </div>
+    <noscript><span>Javascript is required.</span></noscript>
+    <!-- <script src="./assets/js/risachi.min.js"></script> -->
+    <script src="./assets/js/risachi/lisa.js"></script>
+    <script src="./assets/js/risachi/yukina.js"></script>
+  </body>
 </html>

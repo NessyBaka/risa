@@ -1,0 +1,83 @@
+/* patches, too lazy to minify everything */
+
+.theme-button {
+  transition: background-color 150ms ease-in-out !important;
+}
+
+.theme-button.cute-brown:not(.selected) {
+  background-color: var(--mid) !important;
+}
+
+.theme-button.wine-birthday:not(.selected) {
+  background: var(--high) !important;
+}
+
+.wine-birthday .theme-button.deep-dark:not(.selected) {
+  background: #2e2e2e !important;
+}
+
+.skin {
+  background: none !important;
+  transition: height 250ms ease-in-out, border-color 150ms ease-in-out !important;
+}
+.skin > .preview {
+  width: 143px; /* meh */
+  background-color: var(--empty-back);
+}
+
+.preview .loading > .loader {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid var(--empty-front);
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation-duration: 800ms;
+}
+
+.preview .loading > .loader::before {
+  content: none;
+}
+
+.head-search-input > input::placeholder {
+  opacity: 0.7 !important;
+  transition: all ease-in-out 150ms;
+}
+
+.head-search-input > input:not(:hover):not(:active):not(:focus)::placeholder {
+  font-weight: bold;
+  opacity: 1 !important;
+}
+
+.preview > .album-controls {
+  height: 100%;
+  transition: all ease-in-out 200ms;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.preview > .album-controls:hover {
+  opacity: 0.7;
+}
+
+.preview > .album-controls > .album-control {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.preview > .album-controls > .album-control:not(:first-child) {
+  justify-content: flex-end;
+}
+
+.skin > .download-button > [download] {
+  transition: all ease-in-out 150ms;
+}
+
+.meta > .meta-name {
+  font-weight: 900;
+}
