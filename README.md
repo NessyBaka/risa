@@ -5,7 +5,8 @@
 [![Skin collection count](https://img.shields.io/badge/dynamic/json?label=skins%20count&query=listing.length&url=https%3A%2F%2Fgist.githubusercontent.com%2Faneyo%2Fc92396022314311bd7fe6556b01fb630%2Fraw%2Fdata.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
 [![Twitter](https://img.shields.io/twitter/follow/aneyuu.svg?style=social)](https://twitter.com/aneyuu)
 
-> [!IMPORTANT] > **Currently, this project is unmaintained.**  
+> [!IMPORTANT]
+> **Currently, this project is unmaintained.**  
 > No new skins will be added unless i decide to work on this project.
 
 **Risa** - public collection of [osu!](https://osu.ppy.sh) skins i was using at the time(around 2018).
