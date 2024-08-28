@@ -1,7 +1,7 @@
 ## <picture><source media="(prefers-color-scheme: light)" srcset="./assets/readme/sign_dark.png"><source media="(prefers-color-scheme: dark)" srcset="./assets/readme/sign_light.png"><img src="./assets/readme/sign_light.svg" width="200"></picture>
 
 [![MIT](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/aneyo/risa/blob/master/LICENSE)
-[![Website is *always* up, thanks shields.io <3 tho their badges does not](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://risa.aneyo.live/)
+[![Website is *always* up, thanks shields.io <3 tho their badges does not](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://aneyo.github.io/risa/)
 [![Skin collection count](https://img.shields.io/badge/dynamic/json?label=skins%20count&query=listing.length&url=https%3A%2F%2Fgist.githubusercontent.com%2Faneyo%2Fc92396022314311bd7fe6556b01fb630%2Fraw%2Fdata.json)](https://raw.githubusercontent.com/aneyo/risa/master/meta.json)
 [![Twitter](https://img.shields.io/twitter/follow/aneyuu.svg?style=social)](https://twitter.com/aneyuu)
 
